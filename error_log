@@ -1,0 +1,7 @@
+[26-Jul-2019 19:35:09 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 264245248 bytes) in /home/dropsmqx/public_html/vendor/symfony/http-foundation/Response.php on line 405
+[26-Jul-2019 19:35:23 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 264245248 bytes) in /home/dropsmqx/public_html/vendor/symfony/http-foundation/Response.php on line 405
+[26-Jul-2019 19:36:03 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 264245248 bytes) in /home/dropsmqx/public_html/vendor/symfony/http-foundation/Response.php on line 405
+[26-Jul-2019 20:20:40 UTC] PHP Fatal error:  Trait 'Srmklive\PayPal\Traits\PayPalRequest' not found in /home/dropsmqx/public_html/vendor/srmklive/paypal/src/Services/ExpressCheckout.php on line 13
+[27-Jul-2019 09:08:40 UTC] PHP Fatal error:  Namespace declaration statement has to be the very first statement or after any declare call in the script in /home/dropsmqx/public_html/app/Http/Controllers/Customer/CustomerController.php on line 2
+[01-Aug-2019 13:29:39 UTC] PHP Fatal error:  Cannot use Session as Session because the name is already in use in /home/dropsmqx/public_html/app/Http/Controllers/Admin/AdminController.php on line 20
+[01-Aug-2019 13:29:40 UTC] PHP Fatal error:  Cannot use Session as Session because the name is already in use in /home/dropsmqx/public_html/app/Http/Controllers/Admin/AdminController.php on line 20
