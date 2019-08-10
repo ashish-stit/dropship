@@ -50,8 +50,14 @@ class CustomerController extends Controller {
     
        public function customerlist()
     {
-      $customer=customer_orders_model::get();
+        if(Auth::user()->role_id == 1){
+      $customer=customer_orders_model::paginate(10);
       return view('customer/customerdashboard')->with('customer',$customer);
+        }
+        else
+        {
+            return view('errors/404');
+        }
     }
     public function customerprofile()
     {

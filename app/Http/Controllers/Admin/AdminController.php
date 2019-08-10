@@ -55,8 +55,13 @@ class AdminController extends Controller {
     }
        public function imageLayout()
         {
+        if(Auth::user()->role_id == 3){
         $users = masters_model::get();
         return view('admin/addimage-Layout',['users'=>$users]);
+            }
+            else {
+                return view('errors/404');
+            }
         }
     public function storeimageLayout(Request $request){
     $master = new masters_model();
@@ -73,7 +78,12 @@ class AdminController extends Controller {
 }
     public function adminDashboard() {
         $emp_data = employees::select('*')->get();
+        if(Auth::user()->role_id == 3){
         return view('admin/adminDashboard', ['empData' => $emp_data]);
+        }
+        else {
+             return view('errors/404');
+         }
     }
 
     public function addEmployee(Request $request) {
@@ -174,8 +184,14 @@ public function removeEmployee(Request $request) {
     }
 }
    public function addVideoStyle(){
+       if(Auth::user()->role_id == 3){
      $users = videos_model::get();
         return view('admin/add-video', compact('users'));
+       }
+       else
+       {
+           return view('errors/404');
+       }
 }
 public function storeAddVideoStyle(Request $request){
     $video = new videos_model();   
@@ -223,8 +239,13 @@ public function storeAddVideoStyle(Request $request){
         
     public function ShowThumlist()
     {
+        if(Auth::user()->role_id == 3){
         $thumbVideo=master_thumbnails_model::select('*')->get();
         return view('admin/thumbnail')->with('thumb',$thumbVideo);
+        }
+        else{
+            return view('errors/404');
+        }
     }
  
   public function updateImg(Request $request) {

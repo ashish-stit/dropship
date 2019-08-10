@@ -120,7 +120,7 @@ class RegisterController extends Controller
     
     
     
-     public function emp_activate($token)
+     public function activateEmp($token)
     {
         $user = User::where('token', $token)->first();
 
