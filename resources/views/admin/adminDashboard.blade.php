@@ -8,7 +8,7 @@
                     </a>
                 </div>
                 <!--datatables-->                
-                <ol class="breadcrumb" style="    padding: 15px 8px!important">
+                <ol class="breadcrumb" style="padding: 15px 8px!important">
                     <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
                     <li class="active">Employee details</li>
                 </ol>
@@ -56,7 +56,7 @@
                                         <a id="emp_{{ $empData->id }}" class="editEmp " style="margin-right: 1rem; background: #337ab7; padding: 2px 2rem; text-align: center; border-radius: 4px;cursor: pointer;">
                                             <i class="fa fa-edit" style="font-size: 15px; color: #fff;"></i>
                                         </a>
-                                        <a id="emp_{{ $empData->id }}" class="removeEmp" style="background: #337ab7; padding: 2px 2rem; text-align: center; border-radius: 4px;cursor: pointer;">
+                                        <a id="emp_{{ $empData->id }}" class="removeEmp" style="    background-color: #dd4b39; padding: 2px 2rem; text-align: center; border-radius: 4px;cursor: pointer;">
                                             <i class="fa fa-trash" style="font-size: 15px; color: #fff;"></i>
                                         </a>
                                     </td>

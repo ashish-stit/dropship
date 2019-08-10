@@ -40,7 +40,7 @@ Route::get('admin/deletevideo/{id}','Admin\AdminController@deletevideo')->name('
 Route::post('updateEditEmp', 'Admin\AdminController@editVideoData');
 Route::post('updateEditEmpData','Admin\AdminController@updateVideo')->name('updateEditEmpData');
 Route::get('admin/thumImg','Admin\AdminController@ShowThumlist')->name('admin/thumImg');
-Route::post('admin/thumb','Admin\AdminController@AddthumVideo')->name('admin/thumd');
+Route::post('admin/thumb','Admin\AdminController@AddthumVideo')->name('admin/thumb');
 Route::post('Editthum','Admin\AdminController@EditThumbVideo');
 Route::post('UpdateThumblayout','Admin\AdminController@UpdateThumbVideo');
 Route::get('admin/delthum/{id}','Admin\AdminController@deletethumb')->name('admin/delthum');

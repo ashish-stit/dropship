@@ -29,14 +29,14 @@
                         </li>
                          <li>
                             <a href="{{ url ('admin/CustomerDetail') }}">
-                                <i class="fa fa-user"></i> <span>CustomerDetail</span>
+                                <i class="fa fa-user"></i> <span>Customer Detail</span>
                                 <span class="pull-right-container">
                                 </span>
                             </a>
                     </li>
                     <li>
                         <a href="{{ url ('admin/CustOrd') }}">
-                            <i class="fa fa-user"></i> <span>CustomerOrder</span>
+                            <i class="fa fa-user"></i> <span>Customer Order</span>
                             <span class="pull-right-container">
                             </span>
                         </a>

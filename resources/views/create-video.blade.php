@@ -22,7 +22,7 @@
     <div class="container m-50 mb-4">
         <div class="row">
            <div class="col-12 " style="font-family:roboto">
-                <h4 style="text-transform:capitalize!important;margin-bottom:2rem"><b>Select Video Layout aaaa</b></h4>
+                <h4 style="text-transform:capitalize!important;margin-bottom:2rem"><b>Select Video Layout</b></h4>
            </div>
             <div class="col-lg-12 col-md-1 mb-md-0 mb-4 title text-center dis-inl">
                 @foreach($master as $data)        

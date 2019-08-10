@@ -548,3 +548,22 @@ $(function () {
 });
 
 
+// Validation Of Admin Add Image Layout 
+$(document).on('click', '.ErrorMessg', function(){
+    //alert("kjds");return false;
+    var ImgSize = $(this).parent().siblings('.modal-body').find('.ImgSizs').val();
+    var ImgDescription = $(this).parent().siblings('.modal-body').find('.ImgDescs').val();
+    var ImageUploaded = $(this).parent().siblings('.modal-body').find('.ImageShowErr').val();
+    if(ImgSize == ""){
+        $('#ShowImageSizeErrorMsg').css('color','red').html('Please Enter Image Size!');
+        return false;
+    }
+    if(ImgDescription == ""){
+        $('#DescriptionforErrorMsg').css('color','red').html('Please Enter Description!');
+        return false;
+    }
+    if(ImageUploaded == ""){
+        $('#ImageErrorMessage').css('color','red').html('Please Select Image!');
+        return false;
+    }
+});

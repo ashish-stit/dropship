@@ -123,38 +123,41 @@ aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-weight-bold">Add Employee</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
+                <h4 class="modal-title w-100 font-weight-bold" style="margin-top: 10px;">Add Employee</h4>
             </div>
             <div class="modal-body mx-3">
-                <div class="md-form mb-5">
-                    <label data-error="wrong" data-success="right" for="orangeForm-name">Name</label>
-                    <input type="text" name="name" id="employeeName" class="form-control ">                         
+                <div class="md-form mb-5" style="margin-bottom: 10px;">
+                    <label data-error="wrong" data-success="right" for="orangeForm-name" style="margin-bottom: 10px;">Name</label>
+                    <input type="text" name="name" id="employeeName" class="form-control ">
+                    <span id="ErrMsgForName"></span>                 
                 </div>
-                <div class="md-form mb-5">
-                    <label data-error="wrong" data-success="right" for="orangeForm-email">E-mail</label>
-                    <input type="email" name="email" id="employeeEmail" class="form-control "> 
+                <div class="md-form mb-5" style="margin-bottom: 10px;">
+                    <label data-error="wrong" data-success="right" for="orangeForm-email" style="margin-bottom: 10px;">E-mail</label>
+                    <input type="text" name="email" id="employeeEmail" class="form-control fffd"> 
                     <p style="color:red;font-size: 14px;display:none;" id="errorMessage">
                         User Already exists
                     </p>
+                    <span class="invalidMailFormat"></span>
                 </div>
 
                 <div class="md-form mb-4">
-                    <label data-error="wrong" data-success="right" for="orangeForm-pass">Contact Number</label>
-                    <input type="text" name="contact" id="employeeContact" class="form-control ">
+                    <label data-error="wrong" data-success="right" for="orangeForm-pass" style="margin-bottom: 10px;">Contact Number</label>
+                    <input type="text" name="num" id="employeeContact" class="form-control" maxlength="10" style="margin-bottom: 10px;">
+                    <span id="ErrMsgForContact"></span>
                 </div>  
-                <div class="md-form mb-4">
-                    <label data-error="wrong" data-success="right" for="orangeForm-pass">Status</label><br>
-                    <label class="radio-inline"><input type="radio" name="optradio" id="chk_1">Active</label>
-                    <label class="radio-inline" ><input type="radio" name="optradio" id="chk_0">Deactive</label>
+                <div class="md-form mb-4" style="margin-bottom: 10px;">
+                    <label data-error="wrong" data-success="right" for="orangeForm-pass" style="margin-bottom: 10px;">Status</label><br>
+                    <label class="radio-inline"><input type="radio" name="optradio" id="chk_1" class="StatushideError">Active</label>
+                    <label class="radio-inline" ><input type="radio" name="optradio" id="chk_0" class="StatushideError">Deactive</label>
                     <p class="chekErrorMsg"></p>
                 </div>
             </div>
             <div class="modal-footer d-flex justify-content-center" style="text-align: center">
                 <button class="btn btn-deep-orange" id="addEmployee"  
-                        style="width:30%;letter-spacing: 1px;background-color:#08c;color: #fff;">Add</button>
+                        style="width:30%;letter-spacing: 1px;background-color:#08c;color: #fff; margin-bottom: 10px;">Add</button>
             </div>
         </div>
     </div>
@@ -167,10 +170,10 @@ aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-weight-bold">Edit Employee</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
+                <h4 class="modal-title w-100 font-weight-bold" style="margin-top: 10px;">Edit Employee</h4>
             </div>
             <div class="modal-body mx-3">
                 <div class="md-form mb-5">                   
@@ -179,23 +182,29 @@ aria-hidden="true">
                 <div class="md-form mb-5">                   
                     <input type="hidden" name="user_id" class="form-control" id="user_id">                         
                 </div>
-                <div class="md-form mb-5">
-                    <label data-error="wrong" data-success="right" for="orangeForm-name">Name</label>
-                    <input type="text" name="name" id="emp_name" class="form-control ">                         
+                <div class="md-form mb-5" style="margin-bottom: 10px;">
+                    <label data-error="wrong" data-success="right" for="orangeForm-name" style="margin-bottom: 10px;">Name</label>
+                    <input type="text" name="name" id="emp_name" class="form-control ">
+                    <span id="ErrMsgFName"></span>                         
                 </div>
-                <div class="md-form mb-5">
-                    <label data-error="wrong" data-success="right" for="orangeForm-email">E-mail</label>
-                    <input type="email" name="email" id="emp_email" class="form-control ">                            
+                <div class="md-form mb-5" style="margin-bottom: 10px;">
+                    <label data-error="wrong" data-success="right" for="orangeForm-email" style="margin-bottom: 10px;">E-mail</label>
+                    <input type="email" name="email" id="emp_email" class="form-control ">
+                    <p style="color:red;font-size: 14px;display:none;" id="erroMessag">
+                        User Already exists
+                    </p>                            
                 </div>
 
-                <div class="md-form mb-4">
-                    <label data-error="wrong" data-success="right" for="orangeForm-pass">Contact Number</label>
+                <div class="md-form mb-4" style="margin-bottom: 10px;">
+                    <label data-error="wrong" data-success="right" for="orangeForm-pass" style="margin-bottom: 10px;">Contact Number</label>
                     <input type="text" name="contact" id="emp_contact" class="form-control ">
+                    <span id="ErroMsgCont"></span>
                 </div>  
-                <div class="md-form mb-4">
-                    <label data-error="wrong" data-success="right" for="orangeForm-pass">Status</label><br>
+                <div class="md-form mb-4" style="margin-bottom: 10px;">
+                    <label data-error="wrong" data-success="right" for="orangeForm-pass" style="margin-bottom: 10px;">Status</label><br>
                     <label class="radio-inline"><input type="radio" name="optradio" id="chek_1">Active</label>
                     <label class="radio-inline"><input type="radio" name="optradio" id="chek_0">Deactive</label>
+                     <p class="chekErrorMsgs"></p>
                 </div>
             </div>
             <div class="modal-footer d-flex justify-content-center" style="text-align: center">
@@ -217,31 +226,34 @@ aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-weight-bold">Edit Image Layout</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
+                <h4 class="modal-title w-100 font-weight-bold" style="margin-top: 10px;">Edit Image Layout</h4>
             </div>
             <div class="modal-body mx-3">
                 <div class="md-form mb-5">                   
                     <input type="hidden" name="id" class="form-control" id="img_id">                         
                 </div>
-                <div class="md-form mb-5">
-                    <label data-error="wrong" data-success="right" for="orangeForm-name">ImageSize</label>
-                    <input type="text" name="Imgsize" id="img_size" class="form-control ">                         
+                <div class="md-form mb-5" style="margin-bottom: 10px;">
+                    <label data-error="wrong" data-success="right" for="orangeForm-name" style="margin-bottom: 10px;">ImageSize</label>
+                    <input type="text" name="Imgsize" id="img_size" class="form-control editLayImg">
+                    <span id="EditImfLyt"></span>                         
                 </div>
-                <div class="md-form mb-5">
-                    <label data-error="wrong" data-success="right" for="orangeForm-desc">Description</label>
-                    <input type="text" name="Imgdesc" id="img_desc" class="form-control ">                            
+                <div class="md-form mb-5" style="margin-bottom: 10px;">
+                    <label data-error="wrong" data-success="right" for="orangeForm-desc" style="margin-bottom: 10px;">Description</label>
+                    <input type="text" name="Imgdesc" id="img_desc" class="form-control editdesptn">
+                    <span id="EditDes"></span>                 
                 </div>
-                <div class="md-form mb-5">
-                    <label data-error="wrong" data-success="right" for="orangeForm-Img">Image</label>
-                    <input type="file" name="Img" id="img" class="form-control ">                            
+                <div class="md-form mb-5" style="margin-bottom: 10px;">
+                    <label data-error="wrong" data-success="right" for="orangeForm-Img" style="margin-bottom: 10px;">Image Layout </label>
+                    <input type="file" name="Img" id="img" class="form-control EditImges">
+                    <span id="editImg"></span>                            
                 </div>
             </div>
             <div class="modal-footer d-flex justify-content-center" style="text-align: center">
                 <button class="btn btn-deep-orange" id="UpdateImglayout"  
-                        style="width:30%;letter-spacing: 1px;background-color:#08c;color: #fff;">Update</button>
+                        style="width:30%;letter-spacing: 1px;background-color:#08c;color: #fff; margin-bottom: 10px;">Update</button>
             </div>
         </div>
     </div>
@@ -255,24 +267,25 @@ aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-weight-bold">Edit Thumb Layout</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
+                <h4 class="modal-title w-100 font-weight-bold" style="margin-top: 10px;">Edit Thumb Layout</h4>
             </div>
             <div class="modal-body mx-3">
                 <div class="md-form mb-5">                   
                     <input type="hidden" name="id" class="form-control" id="img_id">                         
                 </div>
-                <div class="md-form mb-5">
-                    <label data-error="wrong" data-success="right" for="orangeForm-name">Video</label>
-                    <input type="text" name="video" id="thum_video" class="form-control ">                         
+                <div class="md-form mb-5" style="margin-bottom: 10px;">
+                    <label data-error="wrong" data-success="right" for="orangeForm-name" style="margin-bottom: 10px;">Video URL</label>
+                    <input type="text" name="video" id="thum_video" class="form-control">
+                    <span id="thumsVid"></span>                         
                 </div>
                 
             </div>
             <div class="modal-footer d-flex justify-content-center" style="text-align: center">
                 <button class="btn btn-deep-orange" id="UpdateThumbnaillayout"  
-                        style="width:30%;letter-spacing: 1px;background-color:#08c;color: #fff;">Update</button>
+                        style="width:30%;letter-spacing: 1px;background-color:#08c;color: #fff;margin-bottom: 10px;">Update</button>
             </div>
         </div>
     </div>
