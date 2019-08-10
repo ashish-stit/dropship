@@ -48,6 +48,7 @@ class AdminController extends Controller {
        if(Auth::user()->role_id == 3){
         return view('admin/index');
     }
+
     else {
        return view('errors/404');
    }
@@ -59,6 +60,18 @@ public function imageLayout()
     return view('admin/addimage-Layout',['users'=>$users]);
 }
 public function storeimageLayout(Request $request){
+
+       public function imageLayout()
+        {
+        if(Auth::user()->role_id == 3){
+        $users = masters_model::get();
+        return view('admin/addimage-Layout',['users'=>$users]);
+            }
+            else {
+                return view('errors/404');
+            }
+        }
+    public function storeimageLayout(Request $request){
     $master = new masters_model();
     $master->image_size=request('imagesize');
     $master->description=request('description');
@@ -71,10 +84,18 @@ public function storeimageLayout(Request $request){
     ->with('success','You have successfully uploaded images.');
     return view('admin/addimage-Layout');
 }
-public function adminDashboard() {
-    $emp_data = employees::select('*')->get();
-    return view('admin/adminDashboard', ['empData' => $emp_data]);
-}
+
+
+
+    public function adminDashboard() {
+        $emp_data = employees::select('*')->get();
+        if(Auth::user()->role_id == 3){
+        return view('admin/adminDashboard', ['empData' => $emp_data]);
+        }
+        else {
+             return view('errors/404');
+         }
+    }
 
 public function addEmployee(Request $request) {
     if (request()->ajax()) {
@@ -178,6 +199,15 @@ public function removeEmployee(Request $request) {
 public function addVideoStyle(){
    $users = videos_model::get();
    return view('admin/add-video')->with('users',$users);
+   public function addVideoStyle(){
+       if(Auth::user()->role_id == 3){
+     $users = videos_model::get();
+        return view('admin/add-video', compact('users'));
+       }
+       else
+       {
+           return view('errors/404');
+       }
 }
 public function storeAddVideoStyle(Request $request){
     $video = new videos_model();   
@@ -223,15 +253,19 @@ public function AddthumVideo(Request $request){
         return redirect('admin/thumImg');
 
     }
-}
-
-public function ShowThumlist()
-{
-    $thumbVideo=master_thumbnails_model::select('*')->get();
-    return view('admin/thumbnail')->with('thumb',$thumbVideo);
-}
-
-public function updateImg(Request $request) {
+}        
+    public function ShowThumlist()
+    {
+        if(Auth::user()->role_id == 3){
+        $thumbVideo=master_thumbnails_model::select('*')->get();
+        return view('admin/thumbnail')->with('thumb',$thumbVideo);
+        }
+        else{
+            return view('errors/404');
+        }
+    }
+ 
+  public function updateImg(Request $request) {
     if ($request->ajax()) {
         $id = $request->ImgId;
         $empData = masters_model::where('id', $id)->first();

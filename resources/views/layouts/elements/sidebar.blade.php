@@ -19,10 +19,14 @@
                     <!-- Sidebar user panel -->
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu" data-widget="tree">
+                        @if(Auth::user()->role_id == 2)
+                        <li class="header">MAIN NAVIGATION</li>
+                        @else(Auth::user()->role_id == 3)
                         <li class="header">MAIN NAVIGATION</li>
                         <li>
                             <a href="{{ route ('admin/employee-details') }}">
                                 <i class="fa fa-user"></i> <span>Add Employee</span>
+                                
                                 <span class="pull-right-container">
                                 </span>
                             </a>
@@ -59,6 +63,7 @@
                              <span class="pull-right-container"></span>
                           </a>
                         </li>
+                        @endif
                    </ul>
                 </section>
                 

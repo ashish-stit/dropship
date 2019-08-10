@@ -14,20 +14,22 @@ use App\Http\Controllers\Controller;
 
 class EmployeeController extends Controller 
 {
-        
-      public function __construct() {
-        $this->middleware('auth');
-    }
+    public function loginEmploye()
+     {
+         return view('emplogin');
+     }
+     public function forgetPass()
+     {
+        return view('empForget');
+     }
+
 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-     public function loginEmploye()
-     {
-         return view('auth/employeLogin');
-     }
+   
     public function dashboard() {
         if(Auth::user()->role_id == 2){
         return view('employee/dashboard');
@@ -38,13 +40,18 @@ class EmployeeController extends Controller
     }
    
     public function viewOrders(Request $request) {
+        if(Auth::user()->role_id == 2){
         $customerOrder = customer_orders_model::select('*')
                 ->with('getVideos')
                 ->with('getGender')
                 ->with('getMusic')
                 ->paginate(10);
                 
-       return view('employee/orders', ['customerOrders' => $customerOrder]);
+        return view('employee/orders', ['customerOrders' => $customerOrder]);
+                }
+                 else{
+             return view('errors/404');
+         }
        }
     
     public function viewOrderByEmp(Request $request ,$id){        

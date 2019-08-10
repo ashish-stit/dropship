@@ -24,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
             'App\Events\VideoUploadedEvent' => [
             'App\Listeners\VideoUploadedListener',
             ],
+             'App\Events\RegisterPasswordEvent' => [
+            'App\Listeners\ResetPasswordListner',
+            ],
     ];
 
     /**

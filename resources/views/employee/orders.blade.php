@@ -97,8 +97,10 @@ table thead{
                 <th width="200px">Action</th>
                 <th style="text-align:center">Upload Video</th>
             </thead>
-            <tbody class="">         
+            <tbody class="">
                 @foreach($customerOrders as $order)
+                @if(!empty($order->id) && $order->status == 1)         
+
                 <tr id="orderId_{{ $order->id }}" class="">                   
                     <td style="text-align:center">{{ $order->id }}</td>
                     <td class="orderrDesc">
@@ -166,7 +168,11 @@ table thead{
                     </td>                       
                     @endif
                 </tr>
+                @else
+                 @endif
                 @endforeach
+                
+
             </tbody>
         </table>
     </div>
