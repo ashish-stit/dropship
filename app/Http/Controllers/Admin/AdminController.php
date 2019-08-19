@@ -54,12 +54,6 @@ class AdminController extends Controller {
    }
 
 }
-public function imageLayout()
-{
-    $users = masters_model::get();
-    return view('admin/addimage-Layout',['users'=>$users]);
-}
-public function storeimageLayout(Request $request){
 
        public function imageLayout()
         {
@@ -196,9 +190,7 @@ public function removeEmployee(Request $request) {
         }
     }
 }
-public function addVideoStyle(){
-   $users = videos_model::get();
-   return view('admin/add-video')->with('users',$users);
+
    public function addVideoStyle(){
        if(Auth::user()->role_id == 3){
      $users = videos_model::get();

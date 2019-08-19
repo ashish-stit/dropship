@@ -75,7 +75,7 @@ aria-hidden="true">
                             <label for="validationCustomUsername">Username</label>
                             <a class="float-right labelrem" href="">Remind me</a>
                             <input type="text" class="form-control  @error('email') is-invalid @enderror" id="email"
-                                   aria-describedby="inputGroupPrepend" value="{{ old('email') }}" name="email"  autofocus="autofocus" required>
+                                   aria-describedby="inputGroupPrepend" value="{{ old('email') }}" name="email"  autofocus="autofocus" maxlength="50" required>
                             @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -90,7 +90,7 @@ aria-hidden="true">
                         <div class="col-md-12 mb-3">
                             <label for="validationCustom03">Password</label>
                             <a class="float-right labelrem" href="{{ route('password.request') }}">Reset</a>
-                            <input type="Password" class="form-control @error('password') is-invalid @enderror" id="password"  name="password" required>
+                            <input type="Password" class="form-control @error('password') is-invalid @enderror" id="password"  name="password" maxlength="20" required>
                             @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -131,12 +131,12 @@ aria-hidden="true">
             <div class="modal-body mx-3">
                 <div class="md-form mb-5" style="margin-bottom: 10px;">
                     <label data-error="wrong" data-success="right" for="orangeForm-name" style="margin-bottom: 10px;">Name</label>
-                    <input type="text" name="name" id="employeeName" class="form-control ">
+                    <input type="text" name="name" id="employeeName" class="form-control " maxlength="100">
                     <span id="ErrMsgForName"></span>                 
                 </div>
                 <div class="md-form mb-5" style="margin-bottom: 10px;">
                     <label data-error="wrong" data-success="right" for="orangeForm-email" style="margin-bottom: 10px;">E-mail</label>
-                    <input type="text" name="email" id="employeeEmail" class="form-control fffd"> 
+                    <input type="text" name="email" id="employeeEmail" class="form-control fffd" maxlength="100"> 
                     <p style="color:red;font-size: 14px;display:none;" id="errorMessage">
                         User Already exists
                     </p>
@@ -145,7 +145,7 @@ aria-hidden="true">
 
                 <div class="md-form mb-4">
                     <label data-error="wrong" data-success="right" for="orangeForm-pass" style="margin-bottom: 10px;">Contact Number</label>
-                    <input type="text" name="num" id="employeeContact" class="form-control" maxlength="10" style="margin-bottom: 10px;">
+                    <input type="text" name="num" id="employeeContact" class="form-control" maxlength="12" style="margin-bottom: 10px;">
                     <span id="ErrMsgForContact"></span>
                 </div>  
                 <div class="md-form mb-4" style="margin-bottom: 10px;">

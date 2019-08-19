@@ -37,9 +37,9 @@
                         
                        <td>  
                         @if(!empty($Cust_Order->customerData->getPaymentStatus))
-                          @if($Cust_Order->customerData->getPaymentStatus['payment_status'] == 1 )
+                          @if($Cust_Order['status'] == 1 )
                             @php echo "Done"; @endphp
-                          @else($Cust_Order->customerData->getPaymentStatus['payment_status'] == 0 )
+                          @else($Cust_Order['status'] == 0 )
                             @php echo ""; @endphp
                           @endif
                         @endif

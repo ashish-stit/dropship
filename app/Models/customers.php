@@ -19,6 +19,7 @@ class customers extends Model
         'first_name',
         'last_name'
         ,'image',
+        'subscribe_status',
         'user_id',
          'last_login',
     ];
