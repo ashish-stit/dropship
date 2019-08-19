@@ -1,6 +1,5 @@
 <?php
 namespace App\Http\Controllers\Customer;
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\customer_orders_model;
@@ -187,6 +186,7 @@ class CustomerController extends Controller {
         if($custOrderStatus->status == 1 ){
 
             $custOrdId = $custOrderStatus;
+            
         } 
     }
 
@@ -235,7 +235,8 @@ public function UnsubscribeMember(Request $request) {
         $cusOrderId = $posts['cus_orderId'];            
         $cusOrder = customer_orders_model::findorfail($cusOrderId);
         $cusOrder->Unsubscribe = $posts['unsub_planPrice'];
-        $cusOrder->status ='0';
+        $cusOrder->status ='1';
+        $cusOrder->subscribe_status ='1';
         $cusOrder->save();
 
         #Services table
@@ -280,74 +281,15 @@ public function UnsubscribeMember(Request $request) {
     
     public function ViewcustList()
     {
-        $custDetail=User::paginate(10);
-        return view('admin/customerDetail')->with('custDetail',$custDetail);
-    }
+       
+         $custDetail=User::where('role_id','1')->paginate(10);
+       return view('admin/customerDetail')->with('custDetail',$custDetail);
+           }
     
     public function ViewcustOrder()
     {
        $custOrder = customer_orders_model::with(['customerData', 'customerData.getPaymentStatus'])->paginate(10);
        return view('admin/customerOrder',['custOrder'=> $custOrder]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create() {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request) {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id) {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id) {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id) {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id) {
-        //
     }
 
 }

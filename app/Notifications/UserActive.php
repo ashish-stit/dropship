@@ -48,7 +48,7 @@ class UserActive extends Notification
             ->line('We just noticed that you created a new account. You will need to activate your account to sign in into this account.')
             ->line( 'Your Email : ' .$this->user->email)
             ->line(' Your Password : ' .$this->pass )
-            ->action('Activate', route('emp_activate', [$this->user->token]))
+            ->action('Activate', route('emp_activate',now()->addMinutes(2), [$this->user->token]))
             ->line('Thank you for using our application video editing!');
     }
 

@@ -16,7 +16,7 @@
                 <th scope="col">S.No</th>
                 <th scope="col">Image Uploaded</th>
                 <th scope="col">Video</th><th></th>
-                <th scope="col">Oreder Status</th>
+                <th scope="col">Order Status</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
@@ -52,23 +52,22 @@
                       @if($customer_data->employe_video)
                     <a class="btn btn-sm btn-primary approveEdit" href="javascript:void(0);" id="appEdit_{{ $customer_data->id }}"> Approve to Edit</a>
                     <div id="approveShow_{{ $customer_data->id }}" style="display:none;">
-                        <a class="btn btn-primary" href="javascript:void(0);">Edit</a>
+                        <a class="btn btn-primary" href="/editor">Edit</a>
                         <a class="btn btn-primary openDisputeModal" href="javascript:void(0);" id="dispute_{{ $customer_data->id }}">Dispute</a>
                     </div>
                     @else
-                      <a class="btn btn-sm btn-primary approveEdit" href="javascript:void(0);" id="appEdit_{{ $customer_data->id }}" disabled> Approve to Edit</a>
-                    <div id="approveShow_{{ $customer_data->id }}" style="display:none;">
+                      <a class="btn btn-sm btn-primary approveEdit" href="javascript:void(0);" disabled> Approve to Edit</a>
+                    <div  style="display:none;">
                         <a class="btn btn-primary" href="javascript:void(0);">Edit</a>
-                        <a class="btn btn-primary openDisputeModal" href="javascript:void(0);" id="dispute_{{ $customer_data->id }}">Dispute</a>
+                        <a class="btn btn-primary" href="javascript:void(0);" >Dispute</a>
                     </div>
                     @endif
                     @if($customer_data->employe_video)
                     <a class="btn btn-sm btn-danger" href="{{ url('video/download',$customer_data->id) }}"> Download Video</a>
                     @else
-                     <a class="btn btn-sm btn-danger" href="{{ url('video/download',$customer_data->id) }}" disabled> Download Video</a>
+                     <a class="btn btn-sm btn-danger" href="javascript:void(0);" disabled> Download Video</a>
                     @endif
-                </td>
-              </tr>
+                          </tr>
             @endif
             @endforeach
             @endif
@@ -77,10 +76,10 @@
            
           </table>
     </div>
-     <div class="Visitdrop"><a href="{{url('/')}}"><h4>Create New Order</h4></a></div>
+     <div class="Visitdrop" style="padding-top: 40px;"><a href="{{url('/')}}"><h4>Create New Order</h4></a></div>
     <!-- Large modal -->
-    
-<!-- End Add Customer Video modal-->
+
+<!-- Add Customer Video modal-->
 <div class="modal fade" id="addComments" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -108,6 +107,4 @@
     </div>
 </div>
 <!-- End End Customer Video modal-->
-
-
 @endsection

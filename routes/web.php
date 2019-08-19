@@ -15,17 +15,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 Auth::routes();
-Auth::routes(['verify'=> true]);
 #Auth controller
 Route::get('activate/{token}', 'Auth\RegisterController@activate')->name('activate');
 Route::get('thanks', 'ThanksController@index')->name('thanks');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+//for employee
 Route::get('emp_activate/{token}','Auth\RegisterController@activateEmp')->name('emp_activate');
 Route::get('emplogin','Employee\EmployeeController@loginEmploye')->name('emplogin');
 Route::get('EmpUpdatePass','Employee\EmployeeController@forgetPass')->name('EmpUpdatePass');
 Route::post('password/emp', 'Auth\ForgotPasswordController@postEmail')->name('password.emp');
 Route::get('email/ResetPassword/{id}', 'Auth\ResetPasswordController@EmpResetPassword')->name('email.ResetPassword');
 Route::post('emp/resetpassword', 'Auth\ResetPasswordController@EmpResetPass')->name('emp.resetpassword');
+//end employee
 #SubscribeMember Controller
 Route::get('/get-started', 'SubscribeMemberController@subscribememberlist')->name("subscribe.subscribememberlist");
 Route::get('/faq', 'Customer\CustomerController@faq')->name("faq");

@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Employee;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Models\employees;
 use App\Models\customer_orders_model;
 use App\Models\videos_model;
 use App\Models\music_model;
@@ -11,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Events\VideoUploadedEvent;
 use App\Notifications\videoUploaded;
 use App\Http\Controllers\Controller;
+use Session;
 
 class EmployeeController extends Controller 
 {
@@ -40,7 +42,8 @@ class EmployeeController extends Controller
     }
    
     public function viewOrders(Request $request) {
-        if(Auth::user()->role_id == 2){
+        $employee = employees::where('user_id', Auth::id())->first();
+        if($employee['status'] == 1 && Auth::user()->role_id == 2){
         $customerOrder = customer_orders_model::select('*')
                 ->with('getVideos')
                 ->with('getGender')
@@ -49,6 +52,13 @@ class EmployeeController extends Controller
                 
         return view('employee/orders', ['customerOrders' => $customerOrder]);
                 }
+
+                elseif($employee['status'] == 0 && Auth::user()->role_id == 2)
+                {
+                   Session::flash('status', "Your Account have been not Activated");
+                    return redirect('emplogin');
+                }
+
                  else{
              return view('errors/404');
          }
