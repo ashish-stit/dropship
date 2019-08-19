@@ -101,7 +101,7 @@
                         <!--/.Controls-->
                     </div>
                     <!--Carousel Wrapper-->
-                    <div class="text-center mt-2">
+                    <div class="carousel-item active orderVideoByEmp" id="video_{{ $video->id }}">
                         <a href="javascript:void(0);" class="Selectbtn">
                             <button class="btn waves-effectss btn-blue waves-effect waves-light selectdVideo">Select</button>
                         </a>
@@ -127,7 +127,7 @@
                         <div class="file-field" style="margin-top: 2rem;display: flex;">
                             <div class="inp-fil btn-primary btn-sm float-left" id="uploadMusic">
                                 <span class="icon-size"><i class="fa fa-arrow-up" aria-hidden="true"></i></span>
-                                <input type="file"  name="music" accept="audio/mp3,audio/*;capture=microphone" id="uploadedMusic" onchange=SelectdMusic(this);>
+                                <input type="file"  name="music" accept= "video/*, audio/*" id="uploadedMusic" onchange=SelectdMusic(this);>
                             </div>
                             <div class="file-path-wrapper">
                                 <input class="file-path validate" type="text" placeholder="Upload Music">
@@ -185,7 +185,7 @@
                         <button  class="btn waves-effectss btn-blue waves-effect waves-light" id="backToCreateVideoPage">BACK</button>
                     </a>
                     <a href="javascript:void(0);">
-                        <button  class="btn waves-effectss btn-blue waves-effect waves-light saveForm2Data" type="submit" name="submit">NEXT</button>
+                        <button  class="btn waves-effectss btn-blue waves-effect waves-light saveForm2Data" type="submit" id="LogoExt" name="submit" >NEXT</button>
                     </a>
                 </div>
             </div>

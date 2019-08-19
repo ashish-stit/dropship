@@ -15,7 +15,7 @@ aria-hidden="true">
             @csrf
             <div class="md-form mb-5" style="margin-bottom: 10px;">
                 <label data-error="wrong" data-success="right" for="orangeForm-name" style="margin-bottom: 10px;">Image Size</label>
-                <input type="text" name="imagesize" class="form-control ImgSizs" id="addImageEmployee">
+                <input type="text" name="imagesize" class="form-control ImgSizs" id="addImageEmployee" maxlength="20">
                 <span id="ShowImageSizeErrorMsg"></span>                    
             </div>
             <div class="md-form mb-5" style="margin-bottom: 10px;">

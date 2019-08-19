@@ -18,19 +18,19 @@ $(document).on('click', '#addEmployee', function () {
         $('#errorMessage').css('display','block').html('Email can not be left blank!');
         return false;
     }
-      
+
     if (atposition<1 || dotposition<atposition+2 || dotposition+2>=empEmail.length){  
       $('#errorMessage').css('display','block').html('Please Enter a Valid Email!'); 
       return false;  
   } 
 
-if(empContact == ""){
+  if(empContact == ""){
     $('#ErrMsgForContact').css('color','red').html('Please Enter Contact Number!');
     return false;
 }
 if (isNaN(empContact)){  
   $('#ErrMsgForContact').css('display','block').html('Please Enter a Valid Number!');
-    return false;
+  return false;
 }
 
 if ($(activeChkId).prop('checked') == false && $(deActiveChkId).prop('checked') == false){
@@ -165,10 +165,10 @@ $(document).on('click','#UpdateEmp', function () {
         return false;
     }
     if(email == "" ){
-     $('#erroMessag').css('display','block').html('Email can not be left blank!');
-     return false;
- }
- if(contact == ""){
+       $('#erroMessag').css('display','block').html('Email can not be left blank!');
+       return false;
+   }
+   if(contact == ""){
     $('#ErroMsgCont').css('color','red').html('Please Enter Contact Number!');
     return false;
 }
@@ -196,17 +196,17 @@ $.ajax({
     success: function (data)
     {           
         if (data.messsage == 'success') {
-         alert('Record Updated Successfully');
-         $('#emp_name').val("");
-         $('#emp_email').val("");
-         $('#emp_contact').val("");
-         $('#chek_1').prop('checked', false);
-         $('#chek_0').prop('checked', false);               
-         $('#editEmployeeModalForm').modal('hide');              
-         $('#' + data.emp_data.id).find('#empName').html(data.emp_data.name);
-         $('#' + data.emp_data.id).find('#empEmail').html(data.emp_data.email);
-         $('#' + data.emp_data.id).find('#empContact').html(data.emp_data.contact);
-         if(data.emp_data.status == 1){
+           alert('Record Updated Successfully');
+           $('#emp_name').val("");
+           $('#emp_email').val("");
+           $('#emp_contact').val("");
+           $('#chek_1').prop('checked', false);
+           $('#chek_0').prop('checked', false);               
+           $('#editEmployeeModalForm').modal('hide');              
+           $('#' + data.emp_data.id).find('#empName').html(data.emp_data.name);
+           $('#' + data.emp_data.id).find('#empEmail').html(data.emp_data.email);
+           $('#' + data.emp_data.id).find('#empContact').html(data.emp_data.contact);
+           if(data.emp_data.status == 1){
             $('#' + data.emp_data.id).find('#empStatus').html('Active');
         }else if( data.emp_data.status == 0 ){
             $('#' + data.emp_data.id).find('#empStatus').html('Deactive');
@@ -361,16 +361,16 @@ $(document).on('click','#UpdateImglayout', function () {
         success: function (data)
         {           
             if (data.messsage == 'success') {
-             alert('Record Updated Successfully');
-             $('#img_size').val("");
-             $('#img_desc').val("");
-             $('#img').val("");               
-             $('#editEmployeeModalForm').modal('hide');              
-             $('#' + data.admin_img_data.id).find('#empName').html(data.admin_img_data.size);
-             $('#' + data.admin_img_data.id).find('#empEmail').html(data.admin_img_data.desc);
-             $('#' + data.admin_img_data.id).find('#empContact').html(data.admin_img_data.img);
-         } 
-         else {
+               alert('Record Updated Successfully');
+               $('#img_size').val("");
+               $('#img_desc').val("");
+               $('#img').val("");               
+               $('#editEmployeeModalForm').modal('hide');              
+               $('#' + data.admin_img_data.id).find('#empName').html(data.admin_img_data.size);
+               $('#' + data.admin_img_data.id).find('#empEmail').html(data.admin_img_data.desc);
+               $('#' + data.admin_img_data.id).find('#empContact').html(data.admin_img_data.img);
+           } 
+           else {
             alert(data.error);
         }
     }
@@ -430,12 +430,12 @@ $(document).on('click','#UpdateThumbnaillayout', function () {
         success: function (data)
         {           
             if (data.messsage == 'success') {
-             alert('Record Updated Successfully');
-             $('#thum_video').val("");
-             $('#editThumbModalForm').modal('hide');              
-             $('#' + data.thumb_video_data.id).find('#thum_video').html(data.thumb_video_data.video);
-         } 
-         else {
+               alert('Record Updated Successfully');
+               $('#thum_video').val("");
+               $('#editThumbModalForm').modal('hide');              
+               $('#' + data.thumb_video_data.id).find('#thum_video').html(data.thumb_video_data.video);
+           } 
+           else {
             alert(data.error);
         }
     }
@@ -512,10 +512,10 @@ $(document).on('click', '#updateEmployee', function () {
                 $('#' + data.employDat.id).find('#vidLinks').html(data.emp_data.links);
 
             }else{
-               alert(data.error);
-           }
-       }
-   });
+             alert(data.error);
+         }
+     }
+ });
 });
 
 // Validation Of Admin Add Image Layout 
@@ -528,14 +528,18 @@ $(document).on('click', '.ErrorMessg', function(){
         $('#ShowImageSizeErrorMsg').css('color','red').html('Please Enter Image Size!');
         return false;
     }
-    if(ImgDescription == ""){
-        $('#DescriptionforErrorMsg').css('color','red').html('Please Enter Description!');
-        return false;
-    }
-    if(ImageUploaded == ""){
-        $('#ImageErrorMessage').css('color','red').html('Please Select Image!');
-        return false;
-    }
+    if (isNaN(ImgSize)){  
+        $('#ShowImageSizeErrorMsg').css('display','block').html('Please Enter a Valid Size!');
+      return false;
+  }
+  if(ImgDescription == ""){
+    $('#DescriptionforErrorMsg').css('color','red').html('Please Enter Description!');
+    return false;
+}
+if(ImageUploaded == ""){
+    $('#ImageErrorMessage').css('color','red').html('Please Select Image!');
+    return false;
+}
 });
 // Hide Image Layout Error Message
 $(".ImgSizs").click(function(){
@@ -571,11 +575,11 @@ $(document).on('click', '.updateStylessVideos', function(){
 
 // Validation Of ThumVideo
 $(document).on('click', '.videosSavBt', function(){
- var vdeos = $(this).parent().siblings('.modal-body').find('#ThumnailIdVideo').val();
- if(vdeos == ""){
-     $('#videoShowMessages').css('color','red').html('Please Select Thumbnail Video!');
-     return false;
- }
+   var vdeos = $(this).parent().siblings('.modal-body').find('#ThumnailIdVideo').val();
+   if(vdeos == ""){
+       $('#videoShowMessages').css('color','red').html('Please Select Thumbnail Video!');
+       return false;
+   }
 });
 
 //Hide ThumVideo Error Message

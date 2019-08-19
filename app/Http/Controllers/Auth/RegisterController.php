@@ -82,6 +82,9 @@ class RegisterController extends Controller
         'password' => Hash::make($data['password']),
         'token' => str_random(40) . time(),
         'role_id' => '1',]);
+     if( User::where('email', $data['email'])->exists()){
+         return redirect()->back()->with('alert', 'Invalid Username Or Password!');
+    }
      DB::table('customers')->insert([
       [ 'name' => $data['name'],'email'=>$data['email'],'first_name' => $data['first_name'],'last_name' => $data['last_name'],'user_id' => $user->id, 'image'=>'ewwew.jpeg', 'password' => Hash::make($data['password']), 'created_at'=>date('Y-m-d h:i:s'),'updated_at'=>date('Y-m-d h:i:s')],]);
 

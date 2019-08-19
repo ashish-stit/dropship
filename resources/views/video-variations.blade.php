@@ -9,8 +9,10 @@
 <div class="container m-50 mb-4 mtop-70">
     <h3 class="text-center"><span class="selectvideo"><b>Video Variations </b></span></h3>
    <!-- <a href="{{url('/recuring')}}"><input type="button" name="btn" value="Recuring"></a>-->
-    <div class="row">        
-        @if(!empty($custOrderStatus->subscribe) && $custOrderStatus->subscribe_status == 1)       
+
+    <div class="row">
+        
+        @if($cust_Status->subscribe_status == 1)       
         <div class="col-lg-1 col-md-1 mb-md-0 mb-4"></div>
         <!-- Grid column -->
         
@@ -23,8 +25,8 @@
 
                 <div class="price header white-text blue rounded-top">
                     <h2 class="number">26.50/per month</h2>
-                    
-                    <p>You have allready subscribe</p>
+
+                    <h5>You have already subscribe</h5>
                     <div class="version">
                         <h5 class="mb-0">Video Variations Needed</h5>
                     </div>
@@ -54,7 +56,8 @@
         </div>
         <!-- Grid column -->
        
-        @else         
+        @else       
+        
         <div class="col-lg-1 col-md-1 mb-md-0 mb-4"></div>
         <!-- Grid column -->
         
@@ -67,9 +70,8 @@
 
                 <div class="price header white-text blue rounded-top">
                     <h2 class="number">26.50/per month</h2>
-                     <a href="javascript:void(0);">
-                     <button type="button" class="btn btn-secondary unsubscribePlanPrice" orderId="{{ request()->route('id') }}" style="background-color: #ff6f5e !important;">subscribe $26.50/Per Month</button>
-                 </a>
+
+                     <button type="button" class="btn btn-secondary unsubscribePlanPrice unsubPlanPrice memberAlresdySubscribe"  orderId="{{ request()->route('id') }}" style="background-color: #ff6f5e !important;">subscribe $26.50/Per Month</button>
                     <div class="version">
                         <h5 class="mb-0">Video Variations Needed</h5>
                     </div>
@@ -136,6 +138,7 @@
         </div>
         <!-- Grid column -->
         @endif
+        
         <div class="col-lg-1 col-md-1 mb-md-0 mb-4"></div>
     </div>
 </div>

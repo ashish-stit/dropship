@@ -14,7 +14,7 @@ aria-hidden="true">
             @csrf
             <div class="md-form mb-5" style="margin-bottom: 10px;">
                 <label data-error="wrong" data-success="right" for="orangeForm-name" style="margin-bottom: 10px;">Name</label>
-                <input type="text" name="name" class="form-control VidNam">
+                <input type="text" name="name" class="form-control VidNam" maxlength="100">
                 <span id="NameForErrorMsg" style='color:red;'></span>                    
             </div>
             <div class="md-form mb-5" style="margin-bottom: 10px;">

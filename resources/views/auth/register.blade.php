@@ -49,9 +49,10 @@ Looks good!
 </div>
 </div>
 <div class="form-group mb-3">
-<input type="text" class="form-control  @error('email') is-invalid @enderror" id="" value="{{ old('email') }}" name="email" placeholder="Email" required>
+<input type="text" class="form-control  @error('email') is-invalid @enderror" id="ErrRegMsgs" value="{{ old('email') }}" name="email" placeholder="Email" required>
 @error('email')
-    <span class="invalid-feedback" role="alert">
+<span id="SpnErrId"></span>
+    <span class="invalid-feedback EmailErrsMsg" role="alert">
        <strong>{{ $message }}</strong>
    </span>
 @enderror
@@ -60,9 +61,9 @@ Looks good!
 </div>
 </div>
 <div class="form-group mb-3">
-<input type="password" class="form-control @error('password') is-invalid @enderror" autocomplete="new-password" id="" placeholder="Password" name="password" required>
+<input type="password" class="form-control @error('password') is-invalid @enderror" autocomplete="new-password" id="ErrPassMsg" placeholder="Password" name="password" required>
  @error('password')
-    <span class="invalid-feedback" role="alert">
+    <span class="invalid-feedback PassErrMsgs" role="alert">
         <strong>{{ $message }}</strong>
     </span>
  @enderror

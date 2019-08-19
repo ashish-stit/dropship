@@ -54,7 +54,9 @@ class AdminController extends Controller {
    }
 
 }
-   public function imageLayout()
+
+
+       public function imageLayout()
         {
         if(Auth::user()->role_id == 3){
         $users = masters_model::get();

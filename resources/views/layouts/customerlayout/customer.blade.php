@@ -62,10 +62,10 @@
 <script type="text/javascript">
         $(function () {           
              $('.customedatatable').DataTable({
-                'paging': false,
-                'lengthChange': false,
-                'searching': false,
-                'ordering': false,
+                'paging': true,
+                'lengthChange': true,
+                'searching': true,
+                'ordering': true,
                 'info': true,
                 'autoWidth': false
             });          

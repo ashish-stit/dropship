@@ -83,6 +83,7 @@ Route::get('video-variations/{id}', 'Customer\CustomerController@customerVideoVa
 Route::get('video-variations', 'Customer\CustomerController@customerVideoVariation')->name('video-variations/{id}');
 Route::post('storeSubscribePlan','Customer\CustomerController@subscribeMember');
 Route::post('storeUnSubscribePlan','Customer\CustomerController@UnsubscribeMember');
+Route::post('storesubscribestatus','Customer\CustomerController@subscribestatus');
 Route::get('admin/CustOrd','Customer\CustomerController@ViewcustOrder')->name('admin.CustOrd');
 Route::get('admin/CustomerDetail','Customer\CustomerController@ViewcustList')->name('admin.CustomerDetail');
 
