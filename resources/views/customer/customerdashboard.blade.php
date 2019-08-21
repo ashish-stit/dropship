@@ -1,12 +1,38 @@
  @extends('layouts.customerlayout.customer')
- <style type="text/css">
-    table thead tr th {font-weight: 900; letter-spacing: 1px; text-align: center;}
+<style type="text/css">
+    table thead tr th {font-weight: 900; letter-spacing: 1px; text-align: left;}
     table thead {background: #3c8dbc5c;}
-    table tbody tr td {text-align: center;}
+    table tbody tr td {text-align: left;}
     .Visitdrop{text-align: right; width: 94%;margin-top: -30px;}
     div#DataTables_Table_0_info {width: auto; display: -webkit-inline-box; margin-left: 25px;}
     body{height:100% !important;}
     .content-wrapper {height: 100%;}
+    
+    div#DataTables_Table_0_wrapper {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    padding: 10px;
+    background: #fff;
+    }
+    .Visitdrop {
+    text-align: center;
+    width: 100%;
+    border-radius: 5px;
+    margin-top: -15px;
+    background: #fff;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    text-decoration: underline;
+    }
+    .Visitdrop a h4{font-weight: 600;}
+    th {border: 1px solid #f4f4f4;font-size: 14px;}
+    td {border: 1px solid #f4f4f4;font-size: 14px;}
+    .table>thead>tr>th {border-top: 1px solid #f4f4f4 !important;}
+    div#DataTables_Table_0_info {margin-left: 0px;}
 </style>
  @section('content')
     <div class="card">
@@ -15,7 +41,7 @@
               <tr>
                 <th scope="col">S.No</th>
                 <th scope="col">Image Uploaded</th>
-                <th scope="col">Video</th><th></th>
+                <th scope="col">Video</th>
                 <th scope="col">Order Status</th>
                 <th scope="col">Action</th>
               </tr>
@@ -25,9 +51,10 @@
             $customerId = Auth::user()->id;
             @endphp
             @if(!$customer->isEmpty())
-            @foreach($customer as $customer_data)
-            @if($customer_data->customer_id == $customerId)
             <tbody>
+              @foreach($customer as $customer_data)
+            @if($customer_data->customer_id == $customerId)
+           
               <tr>
                 <td scope="row">{{$sn++}}</td>
                   @if($customer_data->logo)
@@ -45,21 +72,25 @@
                 @else
                 <td>Video Not Available</td>
                 @endif
-                <td></td>
                 <td>{{$customer_data->order_assign_time}}</td>
                 
                   <td class="videoEdit_{{ $customer_data->id }}">
                       @if($customer_data->employe_video)
-                    <a class="btn btn-sm btn-primary approveEdit" href="javascript:void(0);" id="appEdit_{{ $customer_data->id }}"> Approve to Edit</a>
-                    <div id="approveShow_{{ $customer_data->id }}" style="display:none;">
-                        <a class="btn btn-primary" href="/editor">Edit</a>
-                        <a class="btn btn-primary openDisputeModal" href="javascript:void(0);" id="dispute_{{ $customer_data->id }}">Dispute</a>
+                       @if($customer_data->change_stop_scroll == 1)
+                    <div id="approveShow_{{ $customer_data->id }}" disabled>
+                        <a class="btn btn-primary" href="javascript:void(0);">Edit</a>
+                        <a class="btn btn-primary" href="javascript:void(0);" id="dispute_{{ $customer_data->id }}" disabled>Rewise</a>
                     </div>
                     @else
-                      <a class="btn btn-sm btn-primary approveEdit" href="javascript:void(0);" disabled> Approve to Edit</a>
-                    <div  style="display:none;">
-                        <a class="btn btn-primary" href="javascript:void(0);">Edit</a>
-                        <a class="btn btn-primary" href="javascript:void(0);" >Dispute</a>
+                    <div id="approveShow_{{ $customer_data->id }}">
+                        <a class="btn btn-primary" href="/editor">Edit</a>
+                        <a class="btn btn-primary openDisputeModal" href="javascript:void(0);" id="dispute_{{ $customer_data->id }}">Rewise</a>
+                    </div>
+                    @endif
+                    @else
+                    <div>
+                        <a class="btn btn-primary" href="javascript:void(0);" disabled>Edit</a>
+                        <a class="btn btn-primary" href="javascript:void(0);" disabled>Rewise</a>
                     </div>
                     @endif
                     @if($customer_data->employe_video)
@@ -85,7 +116,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-weight-bold">Add Comments</h4>
+                <h4 class="modal-title w-100 font-weight-bold">Add Rewise</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -93,14 +124,15 @@
             <form action="javascript:void(0);" class="customerVideo" method="post">
                 <div class="modal-body mx-3">
                     <div class="md-form mb-5">
-                        <!--<label data-error="wrong" data-success="right" for="orangeForm-name">Comments</label>-->
-                        <textarea id="txtAreaValue" rows="10" cols="70" style="margin-left: 6rem;"></textarea>
-                        <input type="hidden" id="orderIdForCommentVideo" name="orderid" value="">                         
+                       
+                      <input type="checkbox" name="scroll" id="change_scroll" value="1" > Change Stop Scroll<br>
+                      <input type="checkbox" name="thumb" id="change_thumb" value="1"> Change Thumbnail<br>
+                      <input type="hidden" id="orderIdForCommentVideo" name="orderid" value="">                         
                     </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-center" style="text-align: center">
                     <button class="btn btn-deep-orange" id="addCommentsForVideo"  
-                            style="width:30%;letter-spacing: 1px;background-color:#08c;color: #fff;">Submit</button>
+                            style="width:30%;letter-spacing: 1px;background-color:#08c;color: #fff;">Rewise</button>
                 </div>
             </form>
         </div>

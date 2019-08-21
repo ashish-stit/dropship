@@ -52,7 +52,7 @@ class CustomerController extends Controller {
     public function customerlist()
     {
       if(Auth::user()->role_id == 1){
-        $customer=customer_orders_model::paginate(10);
+        $customer=customer_orders_model::get();
         return view('customer/customerdashboard')->with('customer',$customer);
       }
       else
@@ -287,7 +287,8 @@ class CustomerController extends Controller {
         $posts = $request->post();           
         $orderIdForComment = $posts['orderIdCom'];
         $findOrderForComment = customer_orders_model::findorfail($orderIdForComment);
-        $findOrderForComment->customer_comment = $posts['commentValue'];
+        $findOrderForComment->change_stop_scroll = $posts['change_scroll'];
+        $findOrderForComment->change_thumb = $posts['change_thumb'];
         $findOrderForComment->save();
       }
       if ($findOrderForComment) {

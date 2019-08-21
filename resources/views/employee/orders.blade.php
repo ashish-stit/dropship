@@ -114,7 +114,27 @@ table thead{
                         @else <p>Order add to assign ..!!</p>
                         @endif
                     </td>
-                    <td class="assignBtn">  
+                    <td class="assignBtn">
+
+                        @if($order->change_stop_scroll == 1)
+
+                         <div style="margin-top:1rem;display: block;">
+                                    <button type="button" class="btn btn-primary" id="order_{{ $order->id }}"
+                                         style="font-size:16px ;width:100%;border-radius:5px;letter-spacing: 1px; overflow:auto;">Rewise For Change StopScroll
+                                    </button>
+                                </div>
+                                @elseif($order->change_thumb == 1)
+                                <div style="margin-top:1rem;display: block;">
+                                    <button type="button" class="btn btn-primary" style="font-size:16px ;width:100%;border-radius:5px;letter-spacing: 1px;overflow:auto;">Rewise For Change Thumbnail
+                                    </button>
+                                </div>
+                              @elseif($order->change_thumb == 1  && $order->change_stop_scroll == 1)
+                               <div style="margin-top:1rem;display: block;">
+                                    <button type="button" class="btn btn-primary"
+                                         style="font-size:16px ;width:100%;border-radius:5px;letter-spacing: 1px;overflow:auto;">Rewise For Change Thumbnail And StopScroll
+                                    </button>
+                                </div>
+                             @endif
                              @if(empty( $order->is_assigned ))
                                 <div style="margin-top:1rem;display: block;" id="order-asign_{{ $order->id }}">
                                     <button type="button" class="btn btn-primary assignOrder" id="order_{{ $order->id }}"
@@ -135,7 +155,7 @@ table thead{
                                 </div>
                                 </div>  
                             <div>
-                            @elseif( !empty($order->is_assigned) &&  $order->is_assigned != Auth::id() ) 
+                            @elseif(!empty($order->is_assigned) &&  $order->is_assigned != Auth::id() ) 
                             <div class="assignBtn"> 
                             	<div style="margin-top:1rem;display: block;" id="order-asign_{{ $order->id }}">
                                     <button type="button" class="btn btn-primary assignOrder" id="order_{{ $order->id }}"
@@ -171,8 +191,6 @@ table thead{
                 @else
                  @endif
                 @endforeach
-                
-
             </tbody>
         </table>
     </div>

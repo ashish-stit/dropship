@@ -539,7 +539,8 @@ $(document).on('click','.openDisputeModal',function(){
 });
 
 $(document).on('click','#addCommentsForVideo',function(){
-  var commentValue = $(this).parents('form').find('#txtAreaValue').val();
+  var change_scroll = $(this).parents('form').find('#change_scroll').val();
+  var change_thumb = $(this).parents('form').find('#change_thumb').val();
   var orderIdForComent = $(this).parents('form').find('input[type="hidden"]').val();
   $.ajax({
     headers: {
@@ -547,7 +548,7 @@ $(document).on('click','#addCommentsForVideo',function(){
     },
     url: webUrl + '/addCusComm',
     type: "post",
-    data: { commentValue:commentValue, orderIdCom : orderIdForComent },
+    data: { change_scroll : change_scroll , change_thumb : change_thumb, orderIdCom : orderIdForComent },
     datatype: 'json',
     success: function (data)
     {
@@ -557,7 +558,7 @@ $(document).on('click','#addCommentsForVideo',function(){
        $('#addComments').modal('hide');
        $('.approveEdit').show();
        $('#approveShow_'+ data.orderIdForComment).hide();
-       alert('Comment Succesfully Send');
+       alert('Rewise Succesfully Send');
 
      } else {               
       console.log(data.error);
