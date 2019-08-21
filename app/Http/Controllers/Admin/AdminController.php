@@ -55,6 +55,7 @@ class AdminController extends Controller {
 
 }
 
+
        public function imageLayout()
         {
         if(Auth::user()->role_id == 3){
@@ -155,10 +156,12 @@ public function updateEmp(Request $request) {
         if ($usrData) {
             $usrData->name = $posts['emp_name'];
             $usrData->email = $posts['emp_email'];
+            $usrData->active= $posts['sts'];
         }
         $emp_data = employees::findOrFail($posts['id']);
         if ($emp_data) {
-            $emp_data->id = $posts['id'];
+        
+           $emp_data->id = $posts['id'];
             $emp_data->user_id = $posts['user_id'];
             $emp_data->name = $posts['emp_name'];
             $emp_data->email = $posts['emp_email'];

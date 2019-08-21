@@ -15,6 +15,7 @@
                         <th>Assigned</th>
                         <th>OrderAssignDate</th>
                         <th>OrderCompletionDate</th>
+                        <th>OrderStatus</th>
                         <th>PaymentStatus</th>                       
                       </tr> 
                     </thead>
@@ -34,7 +35,18 @@
                           @endif
                         </td>                
                         <td>{{ $Cust_Order->order_assign_time }}</td>
-                        
+                        <td>
+                          @if($Cust_Order->order_counter == 1)
+                          @php echo "Order In Progress"@endphp
+                          @elseif($Cust_Order->order_counter == 0)
+                          @php echo "Order Not Assign By Employee"@endphp
+                          @elseif(!empty($Cust_Order->employe_video))
+                          @php echo "Order Completed"@endphp
+                         
+                          @endif
+
+
+                        </td>
                        <td>  
                         @if(!empty($Cust_Order->customerData->getPaymentStatus))
                           @if($Cust_Order['status'] == 1 )

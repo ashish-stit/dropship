@@ -1,6 +1,5 @@
 <?php
 namespace App\Http\Controllers\Customer;
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\customer_orders_model;
@@ -189,6 +188,7 @@ class CustomerController extends Controller {
              {
               if($custOrderStatus->status == 1 ){
 
+
                 $custOrdId = $custOrderStatus;
               } 
             }
@@ -242,6 +242,7 @@ class CustomerController extends Controller {
         //print_r($cusOrder);exit;
         $cusOrder->Unsubscribe = $posts['unsub_planPrice'];
         $cusOrder->status ='1';
+
         $cusOrder->save();
 
         #Services table
@@ -298,10 +299,12 @@ class CustomerController extends Controller {
     
     public function ViewcustList()
     {
-      $custDetail=User::paginate(10);
-      return view('admin/customerDetail')->with('custDetail',$custDetail);
-    }
-    
+
+       
+         $custDetail=User::where('role_id','1')->paginate(10);
+       return view('admin/customerDetail')->with('custDetail',$custDetail);
+           }
+
     public function ViewcustOrder()
     {
      $custOrder = customer_orders_model::with(['customerData', 'customerData.getPaymentStatus'])->paginate(10);
@@ -337,6 +340,7 @@ class CustomerController extends Controller {
 //     return response()->json(array('error' => 'Something went wrong!!'));
 // }
 // }
+
 
     /**
      * Show the form for creating a new resource.
