@@ -102,7 +102,26 @@ $(document).on('click', '.proceedOrder', function () {
 
   });
 // End Empolyee Orders 
-
+$(document).on('click', '.CustVidTimer', function(){
+var custoId = $(this).attr('id').split('_');
+$(this).parent().parent().parent().hide();
+$.ajax({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      url: webUrl + '/showcustomertimer',
+      type: "POST",
+      data: {user_id: custoId[1]},
+      dataType: 'json',
+      success: function (data) {
+        if (data.message == 'success') {
+          window.location.reload();
+        } else {
+          alert(data.error);
+        }
+      }
+    });
+});
 //Customer create videos
 $(document).on('click', '.getImgPath', function () {
   var imgId = $(this).attr('id').split('_');
@@ -292,8 +311,6 @@ function clock(obje,countDownDate,uploadVideo)
     }, 1000);
 }
 /*  Counter End */
-
-//customer create video end
 
 //customer select video
 $(document).on('click','.selectdVideo',function(){

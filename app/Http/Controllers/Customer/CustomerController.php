@@ -53,7 +53,7 @@ class CustomerController extends Controller {
     public function customerlist()
     {
       if(Auth::user()->role_id == 1){
-        $customer=customer_orders_model::paginate(10);
+        $customer=customer_orders_model::get();
         return view('customer/customerdashboard')->with('customer',$customer);
       }
       else
@@ -307,6 +307,36 @@ class CustomerController extends Controller {
      $custOrder = customer_orders_model::with(['customerData', 'customerData.getPaymentStatus'])->paginate(10);
      return view('admin/customerOrder',['custOrder'=> $custOrder]);
    }
+//    public function StartCustVidTimers(Request $request) {
+//     if ($request->isMethod('post') && $request->ajax()) {
+//         $posts = $request->post();
+//         $CustUserid = $posts['user_id'];
+//         $CustoOrders = customers::findorfail($CustUserid);
+//         $tomorrow = date("l", strtotimer('tomorrow'));
+//         $dayAftrTom = date('l', strtotimer('+2 day'));        
+//         $dayAftrTom_1 = date('l', strtotimer('+3 day')); 
+//         if($tomorrow == 'Saturday'){
+//             $dayAfterTomorrow = (new \DateTime())->add(new \DateInterval('P5D'));
+//             $CustoOrders->order_assign_timer = $dayAfterTomorrow;
+//         }elseif( $dayAftrTom == 'Saturday' ){
+//            $dayAfterTomorrow = (new \DateTime())->add(new \DateInterval('P5D'));
+//            $CustoOrders->order_assign_timer = $dayAfterTomorrow;
+//        }elseif( $dayAftrTom_1 == 'Saturday'){
+//            $dayAfterTomorrow = (new \DateTime())->add(new \DateInterval('P5D'));
+//            $CustoOrders->order_assign_timer = $dayAfterTomorrow;
+//        }else{
+//         $dayAfterTomorrow = (new \DateTime())->add(new \DateInterval('P3D'));
+//         $CustoOrders->order_assign_timer = $dayAfterTomorrow;
+//     }
+//     $CustoOrders->video_counter = true;
+//     $CustoOrders->save();
+// }
+// if ($CustoOrders) {
+//     return response()->json(array('message' => 'success'));
+// } else {
+//     return response()->json(array('error' => 'Something went wrong!!'));
+// }
+// }
 
     /**
      * Show the form for creating a new resource.
