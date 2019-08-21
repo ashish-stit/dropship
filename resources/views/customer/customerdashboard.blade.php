@@ -18,7 +18,7 @@
             <th scope="col">Video</th><th></th>
             <th scope="col">Order Status</th>
             <th scope="col">Action</th>
-            <th scope="col">Customer Counter</th>
+            <th scope="col">Execution Time</th>
         </tr>
     </thead>
     @php
