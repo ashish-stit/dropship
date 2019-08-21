@@ -86,6 +86,7 @@ Route::post('storeUnSubscribePlan','Customer\CustomerController@UnsubscribeMembe
 Route::post('storesubscribestatus','Customer\CustomerController@subscribestatus');
 Route::get('admin/CustOrd','Customer\CustomerController@ViewcustOrder')->name('admin.CustOrd');
 Route::get('admin/CustomerDetail','Customer\CustomerController@ViewcustList')->name('admin.CustomerDetail');
+Route::post('showcustomertimer', 'Customer\CustomerController@StartCustVidTimers');
 
 #PayPalController
 Route::get('/paypal/{order?}','PayPalController@form')->name('order.paypal');

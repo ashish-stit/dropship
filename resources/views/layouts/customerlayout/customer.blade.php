@@ -31,6 +31,8 @@
 <script src="{{ asset('public/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('public/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
 <script src="{{ asset('public/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('public/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>        
+
 <script src="{{ asset('bower_components/raphael/raphael.min.js') }}"></script>
 <script src="{{ asset('bower_components/morris.js/morris.min.js') }}"></script>
 <!-- Sparkline -->
