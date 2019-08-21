@@ -100,6 +100,11 @@
                     @endif
                           </tr>
             @endif
+            @if($customer_data->video_upload_time <= date('Y-m-d H:i:s'))
+            <h1>aa</h1>
+            @else 
+           <h1>ccc</h1>
+           @endif
             @endforeach
             @endif
             
