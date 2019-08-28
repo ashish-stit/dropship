@@ -43,7 +43,7 @@ class videoUploaded extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('Activate Account!')
+            ->subject('Video Uploaded')
             ->greeting(sprintf('Hi, %s', $this->user->name ))
             ->line('We just want to tell you that your ordered video has been completed . You can check to your dashboard .')
 //            ->line( 'Your Email : ' .$this->user->email)            

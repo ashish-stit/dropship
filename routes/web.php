@@ -66,6 +66,7 @@ Route::post('assidnedOrder', 'Employee\EmployeeController@assignedOrderByEmp');
 Route::post('rejectOrder', 'Employee\EmployeeController@rejectOrderByEmp');
 Route::post('proceedOrder', 'Employee\EmployeeController@proceedOrderByEmp');
 Route::post('addVideo', 'Employee\EmployeeController@videoUploadByEmp');
+Route::post('rewiseOrder', 'Employee\EmployeeController@rewiseOrderByEmp');
 
 //Customer Controller
 Route::get('/customer/dashboard',"Customer\CustomerController@customerlist")->name('customer.dashboard');

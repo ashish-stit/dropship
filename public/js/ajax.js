@@ -156,6 +156,8 @@ $(document).on('click','#UpdateEmp', function () {
     var name = $(this).parents('.modal-content').find('#emp_name').val();
     var userId = $(this).parents('.modal-content').find('#user_id').val();
     var email = $(this).parents('.modal-content').find('#emp_email').val();
+    var atposition=email.indexOf("@");  
+    var dotposition=email.lastIndexOf(".");   
     var contact = $(this).parents('.modal-content').find('#emp_contact').val();
     var activeChkId = $(this).parents('.modal-content').find('#chek_1');
     var deActiveChkId = $(this).parents('.modal-content').find('#chek_0');
@@ -168,9 +170,17 @@ $(document).on('click','#UpdateEmp', function () {
        $('#erroMessag').css('display','block').html('Email can not be left blank!');
        return false;
    }
+   if (atposition<1 || dotposition<atposition+2 || dotposition+2>=email.length){  
+      $('#erroMessag').css('display','block').html('Please Enter a Valid Email!'); 
+      return false;  
+  } 
    if(contact == ""){
     $('#ErroMsgCont').css('color','red').html('Please Enter Contact Number!');
     return false;
+}
+if (isNaN(contact)){  
+  $('#ErroMsgCont').css('display','block').html('Please Enter a Valid Number!');
+  return false;
 }
 if ($(activeChkId).prop('checked') == false && $(deActiveChkId).prop('checked') == false){
     $('.chekErrorMsgs').html('Please Select One!').css('color','red');
@@ -245,9 +255,10 @@ $(document).on('submit', '.customerVideo', function () {
         success: function (data)
         {
             if (data.message == 'success') {
-                alert('Uploaded SuccesFully !!');
+                
                 $('#AddCustomerVideo').modal('hide');
                 $('#uploadedVideo').val('');
+                alert('Uploaded SuccesFully !!');
             } else {
                 alert(data.error);
             }

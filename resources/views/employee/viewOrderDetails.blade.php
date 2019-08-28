@@ -13,6 +13,9 @@ body.skin-blue.sidebar-mini {background: #ecf0f5;}
     <li class="list-group-item" style="word-break: break-all;height: auto!important"><b>Product Link :</b>                                                 
         {{ $orderDetails->product_link }}                 
     </li>
+    <li class="list-group-item" style="word-break: break-all;height: auto!important"><b>Delivery Day :</b>                                                 
+        {{ $orderDetails->delivery_day }}                 
+    </li>
     <li class="list-group-item"> <b>Layout :</b> 
 
         <img src=" {{ asset('img/'.$orderDetails->getImageData->img) }}" width="50px" height="auto">

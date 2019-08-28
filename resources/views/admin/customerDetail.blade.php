@@ -6,12 +6,16 @@
 </style>
 
 @section('content')
+<ol class="breadcrumb" style="padding: 15px 8px!important">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
+    <li class="active">Customer Details</li>
+</ol>
    
  <div>
-            <table class="table table table-striped" style="table-layout: fixed;word-wrap: break-word;background-color: #fff;">
+            <table class="table table table-striped" id="example1" style="table-layout: fixed;word-wrap: break-word;background-color: #fff;">
                 <thead>
                     <tr>
-                      <th style="text-align: center;">S.No</th>
+                      <th style="text-align: center;">S.No.</th>
                       <th>First Name</th>
                       <th>Last Name</th>
                       <th>User Name</th>
@@ -33,8 +37,5 @@
         </tbody>
     </table>
 </div>
- <div style="float: right;margin-right: 4rem">
-    {{ $custDetail->links() }}
-    </div>
-            
+ 
     @endsection

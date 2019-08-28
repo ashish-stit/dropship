@@ -8,11 +8,11 @@ label {
     width: 26px;
     padding: 4px;
     background: white;
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(38%,#ffffff), color-stop(100%,#cccccc));
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(38%,#ffffff), color-stop(100%,#cccccc));
     text-align: center;
-	box-shadow: 0px 3px 5px #9a9a9a;
+    box-shadow: 0px 3px 5px #9a9a9a;
     border-radius: 4px;
-	font-weight: bold;
+    font-weight: bold;
     font-size: 15px;
     padding-left: 8px;
 }
@@ -22,11 +22,11 @@ label {
     width: 26px;
     padding: 4px;
     background: white;
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(38%,#ffffff), color-stop(100%,#cccccc));
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(38%,#ffffff), color-stop(100%,#cccccc));
     text-align: center;
-	box-shadow: 0px 3px 5px #9a9a9a;
+    box-shadow: 0px 3px 5px #9a9a9a;
     border-radius: 4px;
-	font-weight: bold;
+    font-weight: bold;
     font-size: 15px;
 }
 
@@ -35,11 +35,11 @@ label {
     width: 26px;
     padding: 4px;
     background: white;
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(38%,#ffffff), color-stop(100%,#cccccc));
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(38%,#ffffff), color-stop(100%,#cccccc));
     text-align: center;
-	box-shadow: 0px 3px 5px #9a9a9a;
+    box-shadow: 0px 3px 5px #9a9a9a;
     border-radius: 4px;
-	font-weight: bold;
+    font-weight: bold;
     font-size: 15px;
 }
 
@@ -48,31 +48,48 @@ label {
     width: 26px;
     padding: 4px;
     background: white;
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(38%,#ffffff), color-stop(100%,#cccccc));
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(38%,#ffffff), color-stop(100%,#cccccc));
     text-align: center;
-	box-shadow: 0px 3px 5px #9a9a9a;
+    box-shadow: 0px 3px 5px #9a9a9a;
     border-radius: 4px;
-	font-weight: bold;
+    font-weight: bold;
     font-size: 15px;
 }
 
  .label-b{
-	margin:0px 8px;
-	font-size: 20px;
-	font-weight: bolder;
-	}
-table thead{
-	border-bottom: 1px solid #e2e1e1;
-    background: whitesmoke;
-    font-size: 16px;
-    letter-spacing: 1px;
-	}
-	table, th, td {
-      border: 1px solid whitesmoke;
+    margin:0px 8px;
+    font-size: 20px;
+    font-weight: bolder;
     }
-    table thead tr th{padding: 10px 10px;}	
-    table tbody tr td{padding: 10px;}
-    .box-body{padding:0px;}
+table thead{
+    border-bottom: 1px solid #e2e1e1;
+    background: #3c8dbc5c;
+    font-size: 14px;
+    letter-spacing: 1px;
+    }
+    table, th, td {
+      border: 1px solid whitesmoke;
+      font-size: 14px;
+    }
+    
+    .box-body{padding:10px;}
+    table.dataTable {
+        margin-top: 0px !important;
+    }
+    body {
+    background: #fff;
+    }
+    .box {
+    margin-bottom: 0px;
+    box-shadow: none;
+    }
+    ul.pagination {
+    margin-top: 4px;
+    }
+    .content-wrapper {
+    overflow: auto;
+    height: 607px !important;
+    }
 </style>
 @include('layouts.elements.sidebar')
 <input type="hidden" value="{{ Auth::id() }}" id="logdInEmpId">
@@ -81,19 +98,20 @@ table thead{
         <h1 class="text-center">No Orders Available Now</h1>
     @endif
 </div>   
-<!--datatables-->                
-<ol class="breadcrumb" style="padding: 15px 8px!important">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Employee</a></li>
-    <li class="active">Orders</li>
+<ol class="breadcrumb" style="padding: 15px 10px!important">
+    <!--<li><a href="#"><i></i></a></li>
+    <li></li>-->
+    <marquee style="color: #3c8dbc; font-size: 20px;font-family: Book Antiqua" behavior="alternate" > <p style="margin: 0;">Employee Dashboard</p></marquee>
 </ol>
 <div class="box">
     <!-- /.box-header -->
     <div class="box-body">
         <table id="example1" class="table" style="table-layout:fixed;word-break:break-all;width:100%">
             <thead>                
-                <th style="text-align:center">OrderId</th>	
+                <th style="text-align:center">OrderId</th>  
                 <th>Title</th>   
                 <th>Status</th>
+                <th>Delivery Date</th>
                 <th width="200px">Action</th>
                 <th style="text-align:center">Upload Video</th>
             </thead>
@@ -105,7 +123,7 @@ table thead{
                     <td style="text-align:center">{{ $order->id }}</td>
                     <td class="orderrDesc">
                         <a href="{{ route ('employee/viewOrderDetails', $order->id) }}" id="orderId_{{ $order->id }}" class="viewDetails"
-                         style="text-decoration:underline;" disabled="">Full Details
+                         style="text-decoration:underline;" disabled="">Brief Details
                          </a>
                     </td>
                     <td>
@@ -114,28 +132,34 @@ table thead{
                         @else <p>Order add to assign ..!!</p>
                         @endif
                     </td>
-                    <td class="assignBtn">
+                    <td>
+                        @if(!empty($order->order_assign_time))
+                        {{$order->order_assign_time}}
+                                @endif
 
-                        @if($order->change_stop_scroll == 1)
+                    </td>
+                    <td class="assignBtn">
+                         @if($order->change_thumb == 1  && $order->change_stop_scroll == 1)
+                               <div style="margin-top:1rem;display: block;">
+                                    <button type="button" class="btn btn-primary comment scrollall" id="{{ $order->id }}"
+                                         style="font-size:16px ;width:100%;border-radius:5px;letter-spacing: 1px;overflow:auto;">Revise For Change Thumbnail And StopScroll
+                                    </button>
+                                </div>
+
+                        @elseif($order->change_stop_scroll == 1)
 
                          <div style="margin-top:1rem;display: block;">
-                                    <button type="button" class="btn btn-primary" id="order_{{ $order->id }}"
-                                         style="font-size:16px ;width:100%;border-radius:5px;letter-spacing: 1px; overflow:auto;">Rewise For Change StopScroll
+                                    <button type="button" class="btn btn-primary comment scrollStop" id="{{ $order->id }}" style="font-size:16px ;width:100%;border-radius:5px;letter-spacing: 1px; overflow:auto;">Revise For Change StopScroll
                                     </button>
                                 </div>
                                 @elseif($order->change_thumb == 1)
                                 <div style="margin-top:1rem;display: block;">
-                                    <button type="button" class="btn btn-primary" style="font-size:16px ;width:100%;border-radius:5px;letter-spacing: 1px;overflow:auto;">Rewise For Change Thumbnail
+                                    <button type="button" class="btn btn-primary comment scrollthumbnail" id="{{ $order->id }}" style="font-size:16px ;width:100%;border-radius:5px;letter-spacing: 1px;overflow:auto;">Revise For Change Thumbnail
                                     </button>
                                 </div>
-                              @elseif($order->change_thumb == 1  && $order->change_stop_scroll == 1)
-                               <div style="margin-top:1rem;display: block;">
-                                    <button type="button" class="btn btn-primary"
-                                         style="font-size:16px ;width:100%;border-radius:5px;letter-spacing: 1px;overflow:auto;">Rewise For Change Thumbnail And StopScroll
-                                    </button>
-                                </div>
+
                              @endif
-                             @if(empty( $order->is_assigned ))
+                             @if(empty($order->is_assigned ))
                                 <div style="margin-top:1rem;display: block;" id="order-asign_{{ $order->id }}">
                                     <button type="button" class="btn btn-primary assignOrder" id="order_{{ $order->id }}"
                                          style="font-size:16px ;width:100%;border-radius:5px;letter-spacing: 1px;">Assign
@@ -157,7 +181,7 @@ table thead{
                             <div>
                             @elseif(!empty($order->is_assigned) &&  $order->is_assigned != Auth::id() ) 
                             <div class="assignBtn"> 
-                            	<div style="margin-top:1rem;display: block;" id="order-asign_{{ $order->id }}">
+                                <div style="margin-top:1rem;display: block;" id="order-asign_{{ $order->id }}">
                                     <button type="button" class="btn btn-primary assignOrder" id="order_{{ $order->id }}"
                                             style="font-size:16px ;width:100%;border-radius:5px;letter-spacing: 1px;" disabled>Assigned
                                     </button>
@@ -229,6 +253,30 @@ table thead{
     </div>
 </div>
 <!-- End End Customer Video modal-->
+<div class="modal fade" id="commentPopUp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header text-center">
+<h4 class="modal-title w-100 font-weight-bold">Revise order</h4>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div> 
+<form method="post" action="javascript:void(0);">
+<div class="modal-body mx-3">
+    <input type="hidden" value="{{ $order->id }}">
+
+ <center><h4>Are You Sure Want To Assign Order</h4></center>
+</div>
+<div class="modal-footer d-flex justify-content-center " style="text-align: center" >
+<button class="btn btn-deep-orange Rewise" id="{{ $order->id }}"
+style="width:30%;letter-spacing: 1px;background-color:#08c;color: #fff;" >ok</button>
+</div>
+</form>
+</div>
+</div>
+</div>
 
 
 @endsection
