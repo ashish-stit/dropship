@@ -6,9 +6,8 @@ use App\Order;
 use App\PayPal;
 use App\Service;
 use App\User;
+use App\Models\customer_orders_model;
 use Illuminate\Http\Request;
-
-
 /**
  * Class PayPalController
  * @package App\Http\Controllers
@@ -44,10 +43,8 @@ class PayPalController extends Controller
     public function checkout($transaction_id, Request $request)
     {
             $order = Order::where('transaction_id', decrypt($transaction_id))->first();
-
             $paypal = new PayPal;
-			
-            $response = $paypal->purchase([
+			$response = $paypal->purchase([
                 'amount' => $paypal->formatAmount($order->amount),
                 'transactionId' => $order->transaction_id,
                 'currency' => 'USD',
@@ -73,7 +70,6 @@ class PayPalController extends Controller
      */
     public function completed($order_id, Request $request)
     {
-
         $order = Order::findOrFail($order_id);
 
         $paypal = new PayPal;
@@ -92,7 +88,7 @@ class PayPalController extends Controller
                 'transaction_id' => $response->getTransactionReference(),
                 'payment_status' => Order::PAYMENT_COMPLETED,
             ]);
-
+             
             return redirect()->route('paymentCompleted', encrypt($order_id))->with([
                 'message' => 'You recent payment is sucessful with reference code ' . $response->getTransactionReference(),
             ]);
@@ -105,6 +101,7 @@ class PayPalController extends Controller
     }
     public function paymentCompleted($order)
     {  
+       
         return view('payment_complete')->with(['order'=>decrypt($order)]);
     }
 

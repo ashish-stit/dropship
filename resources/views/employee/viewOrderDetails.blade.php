@@ -40,11 +40,17 @@ body.skin-blue.sidebar-mini {background: #ecf0f5;}
         <img src="{{ asset('img/user_image/maxresdefault.jpg') }}"height="100px"> 
         @endif
     </li>
+    <li class="list-group-item" style=""> 
+    <span>Thumbnail Video :</span>
+    <a>{!!Embed::make($data->thum_video)->parseUrl()->getIframe() !!}</a>
+    <li class="list-group-item"><b>Music :</b> 
+        <source src=""  type="audio/mpeg"> 
+        </li> 
     <li class="list-group-item"><b>Logo :</b> 
         @if(!empty($orderDetails->logo))
         <img src="{{  asset($orderDetails->logo) }}" height="100px">                        
         @else
-        <img src="{{ asset('img/order_logo/not_available.jpg') }}" height="100px"> 
+        <source src="{{ asset('img/order_logo/not_available.jp') }}" height="100px"> 
         @endif
     </li>
      <li class="list-group-item paddingss">

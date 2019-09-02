@@ -245,9 +245,9 @@ $(document).on('submit', '.customerVideo', function () {
         success: function (data)
         {
             if (data.message == 'success') {
-                alert('Uploaded SuccesFully !!');
                 $('#AddCustomerVideo').modal('hide');
                 $('#uploadedVideo').val('');
+                alert('Uploaded SuccesFully !!');
             } else {
                 alert(data.error);
             }

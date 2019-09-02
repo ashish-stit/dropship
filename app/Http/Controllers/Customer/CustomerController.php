@@ -32,6 +32,8 @@ class CustomerController extends Controller {
      * @return \Illuminate\Http\Response
      */
      public function viewCreateVideos(Request $request, $id = NULL) {
+       if(Auth::user()->role_id == 1)
+       {
       $masters = masters_model::select('*')->get();
       $gender = gender_model::select('*')->get();
       $music = music_model::select('*')->get();
@@ -43,6 +45,11 @@ class CustomerController extends Controller {
 
       return view('create-video')->with(['master' => $masters, 'gender' => $gender, 'music' => $music, 'selectdOrder' => $cusOrdrid]);
     }
+    else{
+       return view('errors/404');
+   }
+  }
+
     
     public function faq()
     {
@@ -200,14 +207,13 @@ class CustomerController extends Controller {
           public function subscribeMember(Request $request) {
             if (request()->ajax()) {
               $posts = $request->post();
-        #customer order_table         
+         #customer order_table         
               $cusOrderId = $posts['cus_orderId'];
               $cusOrder = customer_orders_model::findorfail($cusOrderId);
               $cusOrder->subscribe = $posts['sub_planPrice'];
-              $cusOrder->status ='1';
               $cusOrder->save();
 
-        #Services table
+          #Services table
               $services=new Service();
               $services->amount=$posts['sub_planPrice'];
               $services->created_at=date('Y-m-d h:i:s');
@@ -218,7 +224,7 @@ class CustomerController extends Controller {
             if ($cusOrder && $services) {        
               $service = Service::findOrFail($services->id);
               $user_id=Auth::user()->id;
-        #order_table
+         #order_table
               $order = new Order;
               $transactionId = $posts['transaction_id'];
         $order->user_id = $user_id;  //user id
@@ -241,7 +247,6 @@ class CustomerController extends Controller {
         $cusOrder = customer_orders_model::findorfail($cusOrderId);
         //print_r($cusOrder);exit;
         $cusOrder->Unsubscribe = $posts['unsub_planPrice'];
-        $cusOrder->status ='1';
 
         $cusOrder->save();
 
@@ -266,18 +271,6 @@ class CustomerController extends Controller {
         $order->save();
         return response()->json(array('message' => 'success'));
       } else {
-        return response()->json(array('error' => 'Something went wrong!!'));
-      }
-    }
-    public function subscribestatus(Request $request){
-      if (request()->ajax()){
-        $posts = $request->post();
-        $user_id=Auth::user()->id;
-        $custOrderStatus=customers::where('user_id',$user_id)->first();
-        $custOrderStatus->subscribe_status = '1';
-        $custOrderStatus->save();
-        return response()->json(array('message' => 'success'));
-      }else{
         return response()->json(array('error' => 'Something went wrong!!'));
       }
     }

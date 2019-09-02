@@ -510,34 +510,6 @@ $(document).on('click', '.unsubscribePlanPrice', function () {
     }
   });
 });
-//end unsubscribePlanPrice
-$(document).on('click', '.unsubPlanPrice', function(){
-  var cusStatusId = $(this).attr('userId');
-  //alert(cusStatusId);return false;
-  $.ajax({
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
-    url: webUrl + '/storesubscribestatus',
-    type: "post",
-    data: {customerids: cusStatusId},
-    datatype: 'json',
-    success: function (data)
-    {
-      if (data.message == 'success')
-      {
-        $('#frm_paypal_recurring').submit();
-      } else
-      {
-        console.log(data.error);
-      }
-    }
-  });
-});
-
-//customer select video end
-
-
 //customer dashboard start
 $(document).on('click', '.approveEdit', function()
 {
@@ -645,3 +617,33 @@ $("#ErrPassMsg").click(function(){
 //             return false;
 //     }
 // });
+
+
+$(document).on('click','.comment',function(){
+    $('#commentPopUp').modal('show');
+  });
+
+//Rewise Timer
+$(document).on('click', '.Rewise', function () {
+  var procedOrderId = $(this).attr('id');
+  //alert(procedOrderId);
+  $(this).parent().parent().parent().hide();
+    $.ajax({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      url: webUrl + '/rewiseOrder',
+      type: "POST",
+      data: {procedOrdrId: procedOrderId},
+      dataType: 'json',
+      success: function (data) {
+        if (data.message == 'success') {
+          window.location.reload();
+        } else {
+          alert(data.error);
+        }
+      }
+    });
+
+  });
+// End REwise Timer

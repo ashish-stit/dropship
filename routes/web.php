@@ -35,7 +35,8 @@ Route::get('/faq', 'Customer\CustomerController@faq')->name("faq");
 Route::get('datatables', 'Admin\AdminController@getAllQPRUPloaded')->name('datatables');
 //dashboard
 //Route::get('admin/dashboard', 'Admin\AdminController@dashboard')->name('admin/dashboard');
-Route::get('admin/dashboard', 'Admin\AdminController@adminDashboard')->name('admin/employee-details');
+Route::get('admin/dashboard','Customer\CustomerController@ViewcustOrder')->name('admin.CustOrd') ;
+
 Route::get('admin/addimage', 'Admin\AdminController@imageLayout')->name('admin/addimage');
 Route::post('admin/addimage-Layout', 'Admin\AdminController@storeimageLayout')->name('admin/addimage-Layout');
 Route::get('admin/add-video', 'Admin\AdminController@addVideoStyle')->name('admin/add-video');
@@ -65,8 +66,14 @@ Route::get('employee/viewOrderDetails/{id}', 'Employee\EmployeeController@viewOr
 Route::post('assidnedOrder', 'Employee\EmployeeController@assignedOrderByEmp');
 Route::post('rejectOrder', 'Employee\EmployeeController@rejectOrderByEmp');
 Route::post('proceedOrder', 'Employee\EmployeeController@proceedOrderByEmp');
-Route::post('addVideo', 'Employee\EmployeeController@videoUploadByEmp');
+Route::post('rewiseOrder', 'Employee\EmployeeController@rewiseOrderByEmp');
 
+Route::post('addVideo', 'Employee\EmployeeController@videoUploadByEmp');
+Route::get('employe/empPriorty' , 'Employee\EmployeeController@showPriority')->name('employe.empPriorty');
+Route::get('employe/empDeliver' , 'Employee\EmployeeController@showDeliver')->name('employe.empDeliver');
+Route::get('employe/empCompleted' , 'Employee\EmployeeController@showCompleted')->name('employe.empCompleted');
+Route::get('employe/empLate' , 'Employee\EmployeeController@showLate')->name('employe.empLate');
+Route::get('employe/empSolve' , 'Employee\EmployeeController@showSolve')->name('employe.empSolve');
 //Customer Controller
 Route::get('/customer/dashboard',"Customer\CustomerController@customerlist")->name('customer.dashboard');
 Route::get('/customer/profile',"Customer\CustomerController@customerprofile")->name("customer.customer.profile");
@@ -84,7 +91,7 @@ Route::get('video-variations', 'Customer\CustomerController@customerVideoVariati
 Route::post('storeSubscribePlan','Customer\CustomerController@subscribeMember');
 Route::post('storeUnSubscribePlan','Customer\CustomerController@UnsubscribeMember');
 Route::post('storesubscribestatus','Customer\CustomerController@subscribestatus');
-Route::get('admin/CustOrd','Customer\CustomerController@ViewcustOrder')->name('admin.CustOrd');
+Route::get('admin/CustOrd','Admin\AdminController@adminDashboard')->name('admin/employee-details');
 Route::get('admin/CustomerDetail','Customer\CustomerController@ViewcustList')->name('admin.CustomerDetail');
 Route::post('showcustomertimer', 'Customer\CustomerController@StartCustVidTimers');
 

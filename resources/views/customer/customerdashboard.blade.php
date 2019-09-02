@@ -16,6 +16,67 @@ border-bottom-left-radius: 3px;
 padding: 10px;
 background: #fff;
 }
+label {
+    margin-left: 0px;}
+.lbld {
+    display: -webkit-inline-box;
+    width: 26px;
+    padding: 4px;
+    background: white;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(38%,#ffffff), color-stop(100%,#cccccc));
+    text-align: center;
+    box-shadow: 0px 3px 5px #9a9a9a;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 15px;
+    padding-left: 8px;
+}
+
+.lblh {
+    display: -webkit-inline-box;
+    width: 26px;
+    padding: 4px;
+    background: white;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(38%,#ffffff), color-stop(100%,#cccccc));
+    text-align: center;
+    box-shadow: 0px 3px 5px #9a9a9a;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.lblm {
+    display: -webkit-inline-box;
+    width: 26px;
+    padding: 4px;
+    background: white;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(38%,#ffffff), color-stop(100%,#cccccc));
+    text-align: center;
+    box-shadow: 0px 3px 5px #9a9a9a;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.lbls {
+    display: -webkit-inline-box;
+    width: 26px;
+    padding: 4px;
+    background: white;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(38%,#ffffff), color-stop(100%,#cccccc));
+    text-align: center;
+    box-shadow: 0px 3px 5px #9a9a9a;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+ .label-b{
+    margin:0px 8px;
+    font-size: 20px;
+    font-weight: bolder;
+    }
+
 .Visitdrop {
 text-align: center;
 width: 100%;
@@ -42,7 +103,7 @@ div#DataTables_Table_0_info {margin-left: 0px;}
 <th scope="col">S.No</th>
 <th scope="col">Image Uploaded</th>
 <th scope="col">Video</th>
-<th scope="col">Order Status</th>
+<th scope="col">Video Rewise Status</th>
 <th scope="col">Action</th>
 </tr>
 </thead>
@@ -72,15 +133,30 @@ Your browser does not support the video tag.
 @else
 <td>Video Not Available</td>
 @endif
-<td>{{$customer_data->order_assign_time}}</td>
+<td>@if($customer_data->video_counter == 1)
+        <p class="counter" title="{{(strtotime($customer_data->video_upload_time) * 1000)}}" style="margin-top: 1rem;"></p> 
+        @endif</td>
 
 <td class="videoEdit_{{ $customer_data->id }}">
 @if($customer_data->employe_video)
-@if($customer_data->change_stop_scroll == 1)
+@if($customer_data->video_upload_time <= date('Y-m-d H:i:s'))
+<div id="approveShow_{{ $customer_data->id }}"> 
+<a class="btn btn-primary" href="javascript:void(0);">Edit</a>
+</div>
+@elseif($customer_data->change_stop_scroll == 1)
 <div id="approveShow_{{ $customer_data->id }}" disabled>
 <a class="btn btn-primary" href="javascript:void(0);">Edit</a>
 <a class="btn btn-primary" href="javascript:void(0);" id="dispute_{{ $customer_data->id }}" disabled>Rewise</a>
 </div>
+@elseif($customer_data->change_thumb == 1)
+<div id="approveShow_{{ $customer_data->id }}" disabled>
+<a class="btn btn-primary" href="javascript:void(0);">Edit</a>
+<a class="btn btn-primary" href="javascript:void(0);" id="dispute_{{ $customer_data->id }}" disabled>Rewise</a>
+</div>
+@elseif($customer_data->change_thumb == 1 && $customer_data->change_stop_scroll == 1)
+<div id="approveShow_{{ $customer_data->id }}" disabled>
+<a class="btn btn-primary" href="javascript:void(0);">Edit</a>
+<a class="btn btn-primary" href="javascript:void(0);" id="dispute_{{ $customer_data->id }}" disabled>Rewise</a>
 @else
 <div id="approveShow_{{ $customer_data->id }}">
 <a class="btn btn-primary" href="/editor">Edit</a>
@@ -98,6 +174,7 @@ Your browser does not support the video tag.
 @else
 <a class="btn btn-sm btn-danger" href="javascript:void(0);" disabled> Download Video</a>
 @endif
+    
 </tr>
 @endif
 @endforeach

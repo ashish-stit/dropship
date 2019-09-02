@@ -71,7 +71,7 @@
                 <div class="price header white-text blue rounded-top">
                     <h2 class="number">26.50/per month</h2>
 
-                     <button type="button" class="btn btn-secondary unsubscribePlanPrice unsubPlanPrice memberAlresdySubscribe"  orderId="{{ request()->route('id') }}" style="background-color: #ff6f5e !important;">subscribe $26.50/Per Month</button>
+                     <button type="button" class="btn btn-secondary unsubscribePlanPrice memberAlresdySubscribe"  orderId="{{ request()->route('id') }}" style="background-color: #ff6f5e !important;">subscribe $26.50/Per Month</button>
                     <div class="version">
                         <h5 class="mb-0">Video Variations Needed</h5>
                     </div>

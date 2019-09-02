@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 use App\Invoice;
 use App\IPNStatus;
 use App\Item;
+use App\Models\customers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 use Srmklive\PayPal\Services\ExpressCheckout;
 use Srmklive\PayPal\Services\AdaptivePayments;
 
@@ -79,7 +82,11 @@ class RecuringPaymentController extends Controller
 
 
         if (in_array(strtoupper($response['ACK']), ['SUCCESS', 'SUCCESSWITHWARNING'])) {
-            if ($recurring === true) {
+               $user_id=Auth::user()->id;
+                $custOrderStatus=customers::where('user_id',$user_id)->first();
+                $custOrderStatus->subscribe_status = '1';
+                $custOrderStatus->save();
+                if ($recurring === true) {
                 $response = $this->provider->createMonthlySubscription($response['TOKEN'], 9.99, $cart['subscription_desc']);
                 if (!empty($response['PROFILESTATUS']) && in_array($response['PROFILESTATUS'], ['ActiveProfile', 'PendingProfile'])) {
                     $status = 'Processed';
