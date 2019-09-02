@@ -101,27 +101,33 @@ $(document).on('click', '.proceedOrder', function () {
     });
 
   });
-// End Empolyee Orders 
-$(document).on('click', '.CustVidTimer', function(){
-var custoId = $(this).attr('id').split('_');
-$(this).parent().parent().parent().hide();
-$.ajax({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      },
-      url: webUrl + '/showcustomertimer',
-      type: "POST",
-      data: {user_id: custoId[1]},
-      dataType: 'json',
-      success: function (data) {
-        if (data.message == 'success') {
-          window.location.reload();
-        } else {
-          alert(data.error);
-        }
-      }
-    });
+$(document).on('click','.comment',function(){
+  $('#commentPopUp').modal('show');
 });
+
+//Rewise Timer
+$(document).on('click', '.Rewise', function () {
+  var procedOrderId = $(this).attr('id');
+  $(this).parent().parent().parent().hide();
+  $.ajax({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    url: webUrl + '/rewiseOrder',
+    type: "POST",
+    data: {procedOrdrId: procedOrderId},
+    dataType: 'json',
+    success: function (data) {
+      if (data.message == 'success') {
+        window.location.reload();
+      } else {
+        alert(data.error);
+      }
+    }
+  });
+
+});
+// End REwise Timer
 //Customer create videos
 $(document).on('click', '.getImgPath', function () {
   var imgId = $(this).attr('id').split('_');
@@ -240,6 +246,7 @@ $(document).on('click', '.Next', function () {
      _musicId = musicId[1];
    }
  });
+ var delivery = $(this).parent().parent().parent().parent().parent().parent().find('#deliversDays').find('.DelivrDat').val();
  if (custOrderId == '' && custOrderId == null) {
    custOrderId = '';
  }
@@ -249,7 +256,7 @@ $(document).on('click', '.Next', function () {
    },
    url: webUrl + '/storeCustomerData',
    type: "post",
-   data: {imgId: _imgId, genderId: _gendrId, musicId: _musicId, productLink: product_link,
+   data: {imgId: _imgId, genderId: _gendrId, musicId: _musicId, delivery_day: delivery, productLink: product_link,
      cust_id: custId, custOrderId: custOrderId},
      dataType: 'json',
      success: function (data) {
@@ -288,7 +295,7 @@ function clock(obje,countDownDate,uploadVideo)
 		  if(distance < 0)	 
 		  {
 		       // Take action if date overed
-          if (uploadVideo != '' && uploadVideo != null) {
+           if (uploadVideo != '' && uploadVideo != null) {
             var st = "<div class='tm'><label class='lbld' style='padding-left:8px'>D</label><b class='label-b'>:</b><label class='lblh' style='padding-left:8px'>O</label><b class='label-b'>:</b><label class='lblm' style='padding-left:8px'>N</label><b class='label-b'>:</b><label class='lbls' style='padding-left:8px'>E</label></div>";
             $(obje).html(st);
           } else {
@@ -297,9 +304,9 @@ function clock(obje,countDownDate,uploadVideo)
           }
           clearInterval(x);
 		  	 	// Take action if date overed
-        }
-        else
-        {
+         }
+         else
+         {
           var days = Math.floor(distance / (1000 * 60 * 60 * 24));
           var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
           var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -386,7 +393,18 @@ function _validateSelectVideo()
         }
       });*/
 
-      return true;
+      // return true;
+      // var thumbVedioValidate = false; var thumbVedioValidate = true; 
+      // $('.getVideoId').each(function () {
+      //   if ($(this).hasClass('selectedVideo')) {
+      //     videoValidate =  true;
+      //   }
+      // });
+      // if(videoValidate == false)
+      // {
+      //   toastr["error"]("Please select thumvideo");
+      //   return false; 
+      // }
     }
 
 //save select video data

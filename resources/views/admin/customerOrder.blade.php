@@ -8,14 +8,18 @@
 
 
 <div>
-<table class="table table-striped" style="table-layout: fixed;word-wrap: break-word;background-color: #fff;padding: 10px">
+  <ol class="breadcrumb" style="padding: 15px 8px!important">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
+    <li class="active">Customer Order</li>
+</ol>
+<table class="table table-striped" id="example1" style="table-layout: fixed;word-wrap: break-word;background-color: #fff;">
                       <thead>
                        <tr>
                         <th style="text-align: center;">Order.No</th>
-                        <th>Assigned</th>
-                        <th>OrderAssignDate</th>
-                        <th>OrderCompletionDate</th>
-                        <th>OrderStatus</th>
+                        <th>Order Assigned</th>
+                        <th>Order Assign Date</th>
+                        <th>Order Complete Date</th>
+                        <th>Order Status</th>
                         <th>PaymentStatus</th>                       
                       </tr> 
                     </thead>
@@ -64,7 +68,6 @@
      </table>
  </div>
  <div style="float: right;margin-right: 4rem">
-    {{ $custOrder->links() }}
     </div>
               
                 @endsection

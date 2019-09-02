@@ -97,7 +97,7 @@ div#DataTables_Table_0_info {margin-left: 0px;}
 </style>
 @section('content')
 <div class="card">
-<table class="table table-hover customedatatable" style="margin-top: 0px !important;">
+<table class="table table-bordered table-striped customedatatable" style="margin-top: 0px !important;">
 <thead>
 <tr>
 <th scope="col">S.No</th>
@@ -125,7 +125,7 @@ $customerId = Auth::user()->id;
 @endif
 @if($customer_data->employe_video)
 <td>
-<video width="100" height="100" controls>
+<video width="100" height="50" controls>
 <source src="{{ asset($customer_data->employe_video)}}" type="video/mp4">
 Your browser does not support the video tag.
 </video>
@@ -135,11 +135,15 @@ Your browser does not support the video tag.
 @endif
 <td>@if($customer_data->video_counter == 1)
         <p class="counter" title="{{(strtotime($customer_data->video_upload_time) * 1000)}}" style="margin-top: 1rem;"></p> 
+
+        @else
+        <p>Not Applicable</p>
         @endif</td>
 
 <td class="videoEdit_{{ $customer_data->id }}">
 @if($customer_data->employe_video)
 @if($customer_data->video_upload_time <= date('Y-m-d H:i:s'))
+<<<<<<< HEAD
 <div id="approveShow_{{ $customer_data->id }}"> 
 <a class="btn btn-primary" href="javascript:void(0);">Edit</a>
 </div>
@@ -147,6 +151,13 @@ Your browser does not support the video tag.
 <div id="approveShow_{{ $customer_data->id }}" disabled>
 <a class="btn btn-primary" href="javascript:void(0);">Edit</a>
 <a class="btn btn-primary" href="javascript:void(0);" id="dispute_{{ $customer_data->id }}" disabled>Rewise</a>
+<div id="approveShow_{{ $customer_data->id }}" style="float: left;"> 
+<a class="btn btn-primary" href="javascript:void(0);" title="Edit"><i class="fa fa-edit" style="font-size: 15px; color: #fff;"></i></a>
+</div>
+@elseif($customer_data->change_stop_scroll == 1)
+<div id="approveShow_{{ $customer_data->id }}" disabled style="float: left;">
+<a class="btn btn-primary" href="javascript:void(0);" title="Edit"><i class="fa fa-edit" style="font-size: 15px; color: #fff;"></i></a>
+<a class="btn btn-primary" href="javascript:void(0);" id="dispute_{{ $customer_data->id }}" title="Revise" disabled><i class="fa fa-file-video-o" style="font-size: 15px; color: #fff;"></i></a>
 </div>
 @elseif($customer_data->change_thumb == 1)
 <div id="approveShow_{{ $customer_data->id }}" disabled>
@@ -158,21 +169,21 @@ Your browser does not support the video tag.
 <a class="btn btn-primary" href="javascript:void(0);">Edit</a>
 <a class="btn btn-primary" href="javascript:void(0);" id="dispute_{{ $customer_data->id }}" disabled>Rewise</a>
 @else
-<div id="approveShow_{{ $customer_data->id }}">
-<a class="btn btn-primary" href="/editor">Edit</a>
-<a class="btn btn-primary openDisputeModal" href="javascript:void(0);" id="dispute_{{ $customer_data->id }}">Rewise</a>
+<div id="approveShow_{{ $customer_data->id }}" style="float: left;">
+<a class="btn btn-primary" href="/editor" title="Edit"><i class="fa fa-edit" style="font-size: 15px; color: #fff;"></i></a>
+<a class="btn btn-primary openDisputeModal" href="javascript:void(0);" id="dispute_{{ $customer_data->id }}" title="Revise"><i class="fa fa-file-video-o" style="font-size: 15px; color: #fff;"></i></a>
 </div>
 @endif
 @else
-<div>
-<a class="btn btn-primary" href="javascript:void(0);" disabled>Edit</a>
-<a class="btn btn-primary" href="javascript:void(0);" disabled>Rewise</a>
+<div style="float: left;">
+<a class="btn btn-primary" href="javascript:void(0);" title="Edit" disabled><i class="fa fa-edit" style="font-size: 15px; color: #fff;"></i></a>
+<a class="btn btn-primary" href="javascript:void(0);" title="Revise" disabled><i class="fa fa-file-video-o" style="font-size: 15px; color: #fff;"></i></a>
 </div>
 @endif
 @if($customer_data->employe_video)
-<a class="btn btn-sm btn-danger" href="{{ url('video/download',$customer_data->id) }}"> Download Video</a>
+<a class="btn btn-sm btn-danger" href="{{ url('video/download',$customer_data->id) }}" style=" margin-left:3px;" title="Download"> <i class="fa fa-download" style="font-size: 17px; color: #fff;"></i></a>
 @else
-<a class="btn btn-sm btn-danger" href="javascript:void(0);" disabled> Download Video</a>
+<a class="btn btn-sm btn-danger" href="javascript:void(0);" disabled style=" margin-left: 3px;" title="Download"> <i class="fa fa-download" style="font-size: 17px; color: #fff;"></i></a>
 @endif
     
 </tr>
@@ -184,7 +195,7 @@ Your browser does not support the video tag.
 
 </table>
 </div>
-<div class="Visitdrop" style="padding-top: 40px;"><a href="{{url('/')}}"><h4>Create New Order</h4></a></div>
+<div class="Visitdrop" style="padding-top: 40px;"><a href="{{url('/')}}" class="btn btn-primary">Create New Order</a></div>
 <!-- Large modal -->
 
 <!-- Add Customer Video modal-->
@@ -202,8 +213,8 @@ aria-hidden="true">
 <div class="modal-body mx-3">
 <div class="md-form mb-5">
 
-<input type="checkbox" name="scroll" id="change_scroll" value="1" > Change Stop Scroll<br>
-<input type="checkbox" name="thumb" id="change_thumb" value="1"> Change Thumbnail<br>
+<input type="checkbox" name="scroll" id="change_scroll"> Change Stop Scroll<br>
+<input type="checkbox" name="thumb" id="change_thumb"> Change Thumbnail<br>
 <input type="hidden" id="orderIdForCommentVideo" name="orderid" value=""> 
 </div>
 </div>

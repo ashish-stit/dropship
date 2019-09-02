@@ -65,10 +65,32 @@ table thead{
     border-bottom: 1px solid #e2e1e1;
     background: whitesmoke;
     font-size: 16px;
+    background: #3c8dbc5c;
+    font-size: 14px;
     letter-spacing: 1px;
     }
     table, th, td {
       border: 1px solid whitesmoke;
+      font-size: 14px;
+    }
+    
+    .box-body{padding:10px;}
+    table.dataTable {
+        margin-top: 0px !important;
+    }
+    body {
+    background: #fff;
+    }
+    .box {
+    margin-bottom: 0px;
+    box-shadow: none;
+    }
+    ul.pagination {
+    margin-top: 4px;
+    }
+    .content-wrapper {
+    overflow: auto;
+    height: 607px !important;
     }
     table thead tr th{padding: 10px 10px;}  
     table tbody tr td{padding: 10px;}
@@ -80,10 +102,10 @@ table thead{
         <h1 class="text-center">No Orders Available Now</h1>
     @endif
 </div>   
-<!--datatables-->                
-<ol class="breadcrumb" style="padding: 15px 8px!important">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Employee</a></li>
-    <li class="active">Orders</li>
+<ol class="breadcrumb" style="padding: 15px 10px!important">
+    <!--<li><a href="#"><i></i></a></li>
+    <li></li>-->
+    <marquee style="color: #3c8dbc; font-size: 20px;font-family: Book Antiqua" behavior="alternate" > <p style="margin: 0;">Employee Dashboard</p></marquee>
 </ol>
 <div class="box">
     <!-- /.box-header -->
@@ -91,6 +113,9 @@ table thead{
         <table class="table-bordered table-striped" id="employetable"  style="table-layout:fixed;word-break:break-all;width:100%">
             <thead> 
             <tr>               
+
+        <table id="example1" class="table" style="table-layout:fixed;word-break:break-all;width:100%">
+            <thead>                
                 <th style="text-align:center">OrderId</th>  
                 <th>Title</th>   
                 <th>Status</th>
@@ -128,6 +153,7 @@ table thead{
                                <div style="margin-top:1rem;display: block;">
                                     <button type="button" class="btn btn-primary comment scrollall" id="{{ $order->id }}"
                                          style="font-size:16px ;width:100%;border-radius:5px;letter-spacing: 1px; overflow:auto;">Revise For Change Thumbnail And StopScroll
+                                         style="font-size:16px ;width:100%;border-radius:5px;letter-spacing: 1px;overflow:auto;">Revise For Change Thumbnail And StopScroll
                                     </button>
                                 </div>
 

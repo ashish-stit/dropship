@@ -37,6 +37,7 @@ class CustomerController extends Controller {
       $masters = masters_model::select('*')->get();
       $gender = gender_model::select('*')->get();
       $music = music_model::select('*')->get();
+      // $delivery_date = customer_orders_model::get('*');
       if (!empty($id) && $id != NULL) {
         $cusOrdrid = customer_orders_model::findorfail($id);
       } else {
@@ -88,6 +89,8 @@ class CustomerController extends Controller {
           $customerData->image_id = $posts['imgId'];
           $customerData->gender = $posts['genderId'];
           $customerData->music = $posts['musicId'];
+          $customerData->delivery_day = $posts['delivery_day'];
+          //print_r($customerData);exit;
           $customerData->product_link = $posts['productLink'];
           $customerData->customer_id = $posts['cust_id'];
           $customerData->save();
@@ -98,6 +101,7 @@ class CustomerController extends Controller {
             $custOrdr->image_id = $posts['imgId'];
             $custOrdr->gender = $posts['genderId'];
             $custOrdr->music = $posts['musicId'];
+            $custOrdr->delivery_day = $posts['delivery_day'];
             $custOrdr->product_link = $posts['productLink'];
             $custOrdr->customer_id = $posts['cust_id'];
             $custOrdr->save();
@@ -293,15 +297,13 @@ class CustomerController extends Controller {
     
     public function ViewcustList()
     {
-
-       
-         $custDetail=User::where('role_id','1')->paginate(10);
-       return view('admin/customerDetail')->with('custDetail',$custDetail);
-           }
+      $custDetail=User::where('role_id','1')->get();
+      return view('admin/customerDetail')->with('custDetail',$custDetail);
+    }
 
     public function ViewcustOrder()
     {
-     $custOrder = customer_orders_model::with(['customerData', 'customerData.getPaymentStatus'])->paginate(10);
+     $custOrder = customer_orders_model::with(['customerData', 'customerData.getPaymentStatus'])->get();
      return view('admin/customerOrder',['custOrder'=> $custOrder]);
    }
 //    public function StartCustVidTimers(Request $request) {
